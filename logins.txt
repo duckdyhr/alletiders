@@ -1,0 +1,11 @@
+ssh joan@chat.students.dk -p 44444
+joan2017
+
+mysql -h chat.students.dk -u joan -p
+joan9999
+
+USE joan 
+  -> SHOW TABLES
+
+INSERT INTO person (id, name) VALUES (3, 'Felix');
+
