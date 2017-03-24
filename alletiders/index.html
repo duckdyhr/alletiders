@@ -1,21 +1,73 @@
 <!doctype html>
 
 <html>
-	<head>
-		<title>Page Title</title>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="initial-scale=1.0">
-		<link rel="stylesheet" href="App/Libs/Bootstrap/css/bootstrap.css">
-	</head>
 
-	<body>
+<head>
+    <title>Page Title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0">
+    <link rel="stylesheet" href="App/Libs/Bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="App/css/index.css">
+</head>
+
+<body>
+  <div class="navbar navbar-default">
+   <div class="container">
+       <a href="/" class="navbar-brand">
+            Alle Tiders
+        </a>
+        <ul class="nav nav-pills navbar-right">
+            <li>Login</li>
+            <li>Statistik</li>
+            <li>Hjælp</li>
+        </ul>
+   </div>
+   </div>
     <div class="container">
-        <div class="jumbotron">
-            <h1>Alle Tiders</h1>
+        <div class="row text-justify">
+            <div class="col-md-6">
+                <h2>Venstre kolonne</h2>
+                <p>Hvor kommer det fra? I modsætning til hvad mange tror, er Lorem Ipsum ikke bare tilfældig tekst. Det stammer fra et stykke litteratur på latin fra år 45 f.kr., hvilket gør teksten over 2000 år gammel. Richard McClintock, professor i latin fra Hampden-Sydney universitet i Virginia, undersøgte et af de mindst kendte ord "consectetur" fra en del af Lorem Ipsum, og fandt frem til dets oprindelse ved at studere brugen gennem klassisk litteratur. Lorem Ipsum stammer fra afsnittene 1.10.32 og 1.10.33 fra "de Finibus Bonorum et Malorum" (Det gode og ondes ekstremer), som er skrevet af Cicero i år 45 f.kr. Bogen, som var meget populær i renæssancen, er en afhandling om etik. Den første linie af Lorem Ipsum "Lorem ipsum dolor sit amet..." kommer fra en linje i afsnit 1.10.32.</p>
+            </div>
+            <div class="col-md-6">
+                <h2>Højre kolonne</h2>
+                <p>Lorem Ipsum er ganske enkelt fyldtekst fra print- og typografiindustrien. Lorem Ipsum har været standard fyldtekst siden 1500-tallet, hvor en ukendt trykker sammensatte en tilfældig spalte for at trykke en bog til sammenligning af forskellige skrifttyper. Lorem Ipsum har ikke alene overlevet fem århundreder, men har også vundet indpas i elektronisk typografi uden væsentlige ændringer. Sætningen blev gjordt kendt i 1960'erne med lanceringen af Letraset-ark, som indeholdt afsnit med Lorem Ipsum, og senere med layoutprogrammer som Aldus PageMaker, som også indeholdt en udgave af Lorem Ipsum.</p>
+            </div>
+        </div>
+        <div class="row well well-lg">
+           <div class="col-sm-6">
+            <button type="button" class='btn btn-lg btn-primary'>Click!</button>
+            </div>
+            <div class="col-sm-6">
+            <button type="button" class="btn btn-lg btn-default">Click!</button>
+            </div>
         </div>
     </div>
-    
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-xs-12">
+                    <h4>Who we are</h4>
+                    <p>JOAN productions</p>
+                    <i class="glyphicon glyphicon-heart"></i>
+                </div>
+                <div class="col-md-4 col-xs-6">
+                    <h4>Contact us</h4>
+                </div>
+                <div class="col-md-4 col-xs-6">
+                    <h4>Social media</h4>
+                    <ul class="list-unstyled">
+                        <li>Facebook</li>
+                        <li>Twitter</li>
+                        <li>etc...</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="App/Libs/jquery-3.2.0.js"></script>
     <script src="App/Libs/Bootstrap/js/bootstrap.js"></script>
-	</body>
+</body>
+
 </html>
