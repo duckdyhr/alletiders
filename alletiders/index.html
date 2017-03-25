@@ -1,40 +1,48 @@
 <!doctype html>
 
-<html ng-app="app">
+<html ng-app="alletiders">
 	<head>
-		<title>Alle Tiders</title>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="app/libraries/bootstrap/css/bootstrap.css">
-        
-	</head>
+    <title>Alle Tiders</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="app/libraries/bootstrap/css/bootstrap.css">
 
-	<body>
-       
-        <div class="navbar navbar-default navbar-static-top">
-            <div class="container">
-                <a href="#" class="navbar-brand">Alle Tiders' navbar</a>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a>Login</a></li>
-                    <li><a>Hjælp</a></li>
-                </ul>
-            </div>
-        </div>        
+    <script src="app/libraries/jquery/jquery-3.2.0.js"></script>
+    <script src="app/libraries/bootstrap/js/bootstrap.js"></script>
+    <script src="app/libraries/angular/angular.js"></script>
+
+    <script src="app/javascript/app.js"></script>
+</head>
+
+<body>
+    <div class="navbar navbar-default navbar-static-top">
         <div class="container">
-            <form>
-                
-            </form>    
+            <a href="#" class="navbar-brand">Alle Tiders' navbar</a>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a>Login</a></li>
+                <li><a>Hjælp</a></li>
+            </ul>
         </div>
+    </div>
+
+    <div class="container">
+        <p id='test'></p>
+
+        <form>
+
+        </form>
+    </div>
+
+    <div class="container" ng-controller="testController as testCtrl">
+        <p>{{"Velkommen. " + "Angular expression"}}</p>
+        {{userid + " " + userpw}} <br>
         
-        <div class="container">
-            <p>{{"Velkommen. " + "Angular expression"}}</p>
-            <p id='test'></p>
+        <h2>ng-repeat</h2>
+        <p>Persons array:</p>
+        <p>{{data}}</p>
+        <div ng-repeat="person in data">
+            <p>{{person.firstname + " " + person.lastname}}</p>
         </div>
-        
-        <script src="app/libraries/jquery/jquery-3.2.0.js"></script>
-        <script src="app/libraries/bootstrap/js/bootstrap.js"></script>
-        <script src="app/libraries/angular/angular.js"></script>
-                
-        <script src="app/javascript/app.js"></script>
-	</body>
+    </div>
+</body>
 </html>
