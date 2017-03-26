@@ -1,17 +1,22 @@
 <!doctype html>
 
 <html ng-app="alletiders">
-	<head>
+
+<head>
     <title>Alle Tiders</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="app/libraries/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="app/css/app.css">
 
     <script src="app/libraries/jquery/jquery-3.2.0.js"></script>
+
     <script src="app/libraries/bootstrap/js/bootstrap.js"></script>
     <script src="app/libraries/angular/angular.js"></script>
+    <script src="app/libraries/angular/angular-route.js"></script>
 
     <script src="app/javascript/app.js"></script>
+    <script src="app/javascript/tests.js"></script>
 </head>
 
 <body>
@@ -24,25 +29,45 @@
             </ul>
         </div>
     </div>
-
+    
     <div class="container">
-        <p id='test'></p>
-
-        <form>
-
+        <h2>Testing ng-view</h2>    
+        <div ng-view></div>
+    </div>
+    
+    <div class="container" ng-controller="formController as formCtrl">
+        <h2>Input formular eksempel</h2>
+        <form name='submitForm' ng-submit="formCtrl.addRegistration()" novalidate>
+            <div class="form-group">
+                <label for='name'>Navn:</label>
+                <input type='text' id='fullname' name="fullname" class="form-control" required ng-model="registration.name">
+            </div>
+            <div class="form-group">
+                <label for="hours">Timer:</label>
+                <input type="number" id="hours" name="hours" class="form-control" required ng-model="registration.hours">
+            </div>
+            <div>Er form valid: {{submitForm.$valid}}</div>
+            <div class="form-group">
+                <input type="submit" value="Godkend" class="pull-right">
+            </div>
         </form>
+        <p>scope's registration = {{registration}}</p>
     </div>
 
+    <p id='test'></p>
+
     <div class="container" ng-controller="testController as testCtrl">
-        <p>{{"Velkommen. " + "Angular expression"}}</p>
-        {{userid + " " + userpw}} <br>
-        
+        <h2>Angular expressions</h2>
+        <p>{{"Velkommen. " + "exp 2"}}</p>
+        <p>Fra $scope: {{userid + " " + userpw}}</p><br>
+
         <h2>ng-repeat</h2>
         <p>Persons array:</p>
         <p>{{data}}</p>
         <div ng-repeat="person in data">
-            <p>{{person.firstname + " " + person.lastname}}</p>
+            <p>{{person.firstname + " " + person.lastname | uppercase}}</p>
         </div>
     </div>
 </body>
+
 </html>

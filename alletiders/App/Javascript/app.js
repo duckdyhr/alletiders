@@ -1,11 +1,22 @@
 (function () {
     //Wrapper javascript i en closure - apparently a good habit.
-    var app = angular.module('alletiders', []);
-
+    var app = angular.module('alletiders', ['ngRoute', 'tests']);
+    
     app.controller('testController', function ($scope) {
         $scope.userid = "Id1";
         $scope.userpw = "pw";
         $scope.data = persons;
+    });
+    
+    app.controller('formController', function($scope){
+        $scope.registration = {};
+        this.reset = function(){
+            $scope.registration = {};  
+        };
+        this.addRegistration = function(){
+            console.log("Tak for registrering: ");  
+            this.reset();
+        };
     });
     
     function person(fname, lname){
