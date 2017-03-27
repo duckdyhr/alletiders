@@ -14,5 +14,4 @@
     app.controller('testController', function($scope){
         $scope.message = "Testing ng-routing";
     });
-    
 })();
