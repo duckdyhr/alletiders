@@ -1,5 +1,11 @@
 (function () {
     var app = angular.module('app', []);
+    app.controller(dbController, function($scope, $http){
+//       Eller .put?
+        $http.get("hvad.php").then(function(response){
+           
+       })
+    });
 })();
 
 function test() {

@@ -1,5 +1,5 @@
 <?php
-    $servername = "chat.students.dk/phpmyadmin";
+    $servername = "chat.students.dk";
     $username = "joan";
     $password="joan9999";
 
@@ -9,7 +9,7 @@ try{
     
     $sql="INSERT INTO person (id, name) VALUES (4, 'LARS');";
     $conn->exec($sql);
-    $echo "LARS inserted, woop!";
+    echo "LARS inserted, woop!";
 }catch(PDOException $e){
     echo "Failed";
 }
