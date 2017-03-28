@@ -1,10 +1,10 @@
 var app = angular.module('app', []);
 
-function test(){
+function test() {
   //$('#test').text("Testing app.js");
-    document.getElementById("test").innerHTML = x;
+  document.getElementById("test").innerHTML = x;
 };
 
-function add(x, y){
-    return x+y;
+function add(x, y) {
+  return x + y;
 }
