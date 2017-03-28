@@ -1,0 +1,48 @@
+<!doctype html>
+
+<html>
+
+<head>
+  <title>Login</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="/app/libraries/bootstrap/css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="/app/stylesheets/css/loginView.css">
+</head>
+
+<body>
+  <div ng-app="login" ng-controller="loginController">
+    <div class="container">
+      <h1>
+        AlleTiders
+        <br>
+        <small>Login nedenfor</small>
+      </h1>
+    </div>
+    <div class="container">
+      <form novalidate>
+        <div class="form-group">
+          <input type="email" id="email" class="form-control" ng-model="email" placeholder="E-mail">
+        </div>
+        <div class="form-group">
+          <input type="password" id="password" class="form-control" ng-model="password" placeholder="Password">
+        </div>
+        <button class="btn btn-default" ng-click="login()">Login</button>
+      </form>
+
+      <!-- used for visual test of login-validation
+      <div>
+        {{validLogin}}
+      </div>
+-->
+    </div>
+  </div>
+
+  <script src="/app/libraries/angular/angular.js"></script>
+  <script src="/app/libraries/bootstrap/js/bootstrap.js"></script>
+  <script src="/app/libraries/jquery/jquery-3.2.0.js"></script>
+
+  <script src="/app/javascript/controller/loginController.js"></script>
+</body>
+
+</html>
