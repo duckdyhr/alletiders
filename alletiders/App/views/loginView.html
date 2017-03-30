@@ -1,6 +1,6 @@
 <!doctype html>
 
-<html>
+<html ng-app="login">
 
 <head>
   <title>Login</title>
@@ -11,7 +11,7 @@
 </head>
 
 <body>
-  <div ng-app="login" ng-controller="loginController">
+  <div ng-controller="loginController">
     <div class="container">
       <h1>
         AlleTiders
@@ -27,7 +27,7 @@
         <div class="form-group">
           <input type="password" id="password" class="form-control" ng-model="password" placeholder="Password">
         </div>
-        <button class="btn btn-default" ng-click="login()">Login</button>
+        <button id="btnLogin" class="btn btn-default" ng-click="login()">Login</button>
       </form>
 
       <!-- used for visual test of login-validation

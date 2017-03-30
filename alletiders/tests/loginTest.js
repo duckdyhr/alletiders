@@ -20,7 +20,7 @@ describe('loginController', function(){
     
     it('should validate email and password', function() {
       expect($scope.login()).toBe(true);
-    })
+    });
     
 //    it('should validate email', function() {
 //      expect($scope.validateEmail('dummy@test.com')).toBe(true);
