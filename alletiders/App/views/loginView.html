@@ -1,23 +1,33 @@
-<div ng-app="login" ng-controller="loginController">
-  <div class="container">
-    <h1>
-      AlleTiders
-      <br>
-      <small>Login nedenfor</small>
-    </h1>
-    <div ng-hide="msgLoginErr" class="alert alert-warning alert-dismissable fade in">
-      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> Email eller password forkert
+<div ng-controller="loginController">
+    <div class="container">
+        <h1>
+            AlleTiders
+            <br>
+            <small>Login nedenfor</small>
+        </h1>
+        <div ng-hide="msgLoginErr" class="alert alert-warning alert-dismissable fade in">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> Email eller password forkert
+        </div>
     </div>
-  </div>
-  <div class="container">
-    <form novalidate>
-      <div class="form-group">
-        <input type="email" id="email" class="form-control" ng-model="email" placeholder="E-mail">
-      </div>
-      <div class="form-group">
-        <input type="password" id="password" class="form-control" ng-model="password" placeholder="Password">
-      </div>
-      <button id="btnLogin" class="btn btn-default" ng-click="login()">Login</button>
-    </form>
-  </div>
+    <div class="container">
+        <form novalidate>
+            <div class="form-group">
+                <input type="email" id="email" class="form-control" ng-model="email" placeholder="E-mail">
+            </div>
+            <div class="form-group">
+                <input type="password" id="password" class="form-control" ng-model="password" placeholder="Password">
+            </div>
+            <button id="btnLogin" class="btn btn-default" ng-click="login()">Login</button>
+        </form>
+    </div>
+</div>
+<div class="container" ng-controller="testLoginController">
+    {{test}}<br> {{logins}}
+    <table>
+        <tr ng-repeat="x in testLogins">
+            <td>{{x.memberId}}</td>
+            <td>{{x.userId}}</td>
+            <td>{{x.userPW}}</td>
+        </tr>
+    </table>
 </div>

@@ -1,12 +1,5 @@
 (function () {
-  var app = angular.module('app', ['ngRoute']);
-  app.controller(dbController, function ($scope, $http) {
-    //       Eller .put?
-    $http.get("hvad.php").then(function (response) {
-
-    })
-  });
-  
+  var app = angular.module('app', ['login', 'registration', 'ngRoute']);
   app.config(config);
   
   config.$inject = ['$routeProvider', '$locationProvider'];
@@ -26,3 +19,13 @@
   }
   
 })();
+
+function test() {
+  //$('#test').text("Testing app.js");
+  document.getElementById("test").innerHTML = x;
+};
+
+function add(x, y) {
+  return x + y;
+}
+
