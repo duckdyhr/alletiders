@@ -30,6 +30,6 @@ app.controller("loginController", function ($scope) {
     
     $scope.validLogin = (validateEmail(email) && validatePassword(pass));
     
-    //return $scope.validLogin;
+    return $scope.validLogin;
   }
 });
