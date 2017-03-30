@@ -1,6 +1,6 @@
 var app = angular.module('registration', []);
 
-app.controller('registrationController', function ($scope, $timeout) {
+app.controller('registrationController', function ($scope, $window) {
   $scope.msgSuccess = true;
   
   $scope.laug = ["temp-laug"];

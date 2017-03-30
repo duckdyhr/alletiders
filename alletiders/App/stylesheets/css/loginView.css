@@ -4,8 +4,3 @@
 .ng-valid.ng-dirty{
     border-color: #78FA89;
 }
-
-.container{
-    border: 1px black dashed;
-    margin-bottom: 10px;
-}

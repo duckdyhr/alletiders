@@ -1,8 +1,10 @@
-var app = angular.module('login', []);
-app.controller("loginController", function ($scope) {
-  
+var app = angular.module('login', [])
+
+app.controller("loginController", function ($scope, $window) {
+
   $scope.validLogin = false;
-  
+  $scope.msgLoginErr = true;
+
   var dummy = {
     email: "dummy@test.com",
     password: "dummy"
@@ -25,11 +27,15 @@ app.controller("loginController", function ($scope) {
   }
 
   $scope.login = function () {
-    var email = $scope.email;
-    var pass = $scope.password;
-    
-    $scope.validLogin = (validateEmail(email) && validatePassword(pass));
-    
-    return $scope.validLogin;
+
+    $scope.validLogin = (validateEmail($scope.email) && validatePassword($scope.password));
+
+    console.log($scope.validLogin);
+
+    if ($scope.validLogin == true) {
+      $window.location.href = 'registrationView.html';
+    } else {
+      $scope.msgLoginErr = false;
+    }
   }
 });
