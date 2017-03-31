@@ -2,7 +2,7 @@
     console.log("registrationController.js is loaded!");
     var app = angular.module('registration', []);
 
-    app.controller('registrationController', function ($scope, $window) {
+    app.controller('registrationController', function ($scope) {
         $scope.msgSuccess = true;
 
         $scope.laug = ["temp-laug"];

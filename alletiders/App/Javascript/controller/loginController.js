@@ -3,7 +3,7 @@
     angular.module('login', []);
 
     angular.module('login')
-        .controller("loginController", function ($scope, $http) {
+        .controller("loginController", function ($scope, $http, $location) {
         $http.get("app/ajax/login.php")
             .then(function (response) {
                 $scope.masterLogins = response.data.records;
@@ -13,6 +13,8 @@
         $scope.password = "";
         $scope.validLogin = false;
         $scope.msgLoginErr = true;
+        
+        console.log($scope.msgLoginErr);
 
         /*$scope.login = function(){
             console.log("Logging in "); with " + user + " " + pw);
@@ -45,10 +47,11 @@
             $scope.validLogin = (validateEmail($scope.email) && validatePassword($scope.password));
             console.log($scope.validLogin);
             console.log($scope.masterLogins);
-            if ($scope.validLogin == true) {
-                $scope.msgLoginErr = true;
-            } else {
+            if ($scope.validLogin != true) {
                 $scope.msgLoginErr = false;
+                console.log($scope.msgLoginErr);
+            } else {
+                $location.path('/registration');                
             }
         }
     });

@@ -12,12 +12,11 @@
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     } 
-    echo "Connected successfully";
     
     $sql = "SELECT * FROM Login";
     $result = $conn->query($sql);
 
-    $output="";
+    $outp="";
     while($rs = $result->fetch_array(MYSQLI_ASSOC)) {
         if ($outp != "") {$outp .= ",";}
         $outp .= '{"memberId":"'  . $rs["memberId"] . '",';
