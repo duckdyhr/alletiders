@@ -71,11 +71,6 @@ module.exports = function (config) {
 
     // Concurrency level
     // how many browser should be started simultaneous
-<<<<<<< HEAD
-    concurrency: Infinity,
-
-=======
     concurrency: Infinity
->>>>>>> PHP-Angular
   })
 }
