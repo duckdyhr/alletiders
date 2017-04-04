@@ -1,0 +1,33 @@
+<!doctype html>
+
+<html>
+
+<head>
+    <title>Page Title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0">
+</head>
+
+<body ng-app="myApp" ng-controller="myCtrl">
+    <h1>{{myWelcome}}</h1>
+    id: <input ng-model="id">
+    <br>
+    pw: <input ng-model="pw">
+    <script src="../alletiders/app/libraries/jquery/jquery-3.2.0.js"></script>
+    <script src="../alletiders/app/libraries/bootstrap/js/bootstrap.js"></script>
+    <script src="../alletiders/app/libraries/angular/angular.js"></script>
+    <script>
+        console.log("v 4.0");
+        var app = angular.module('myApp', []);
+        app.controller('myCtrl', function($scope, $http) {
+            $scope.id = "johan";
+            $scope.pw = "johan";
+            $http.get("login.php?id="+$scope.id+"&pw="+$scope.pw)
+                .then(function(response) {
+                    console.log(response.data);
+                });
+        });
+    </script>
+</body>
+
+</html>

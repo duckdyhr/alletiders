@@ -42,8 +42,9 @@ INSERT INTO Registration (memberId, laugId, authorId, date, hours)
     VALUES (1, 16, 1, '2017-03-28', 6);
     
 CREATE TABLE Login (
-    userId VARCHAR(10) NOT NULL UNIQUE,
+    userId VARCHAR(255) NOT NULL PRIMARY KEY,
     userPW VARCHAR(20) NOT NULL,
     memberId int NOT NULL,
     FOREIGN KEY(memberId) REFERENCES Member(Id)
 );
+INSERT INTO `Login` (`userId`, `userPW`, `memberId`) VALUES ('anne@test.com', 'anne', '2');
