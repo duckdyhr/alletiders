@@ -1,58 +1,40 @@
 (function () {
-    console.log("loginController.js is loaded!");
-    angular.module('login', []);
+  console.log("loginController.js is loaded!");
+  angular.module('login', []);
 
-    angular.module('login')
-        .controller("loginController", function ($scope, $http, $location) {
-        $http.get("app/ajax/login.php")
-            .then(function (response) {
-                $scope.masterLogins = response.data.records;
-            });
+  angular.module('login')
+    .controller("loginController", function ($scope, $http, $location) {
 
-        $scope.email = "";
-        $scope.password = "";
-        $scope.validLogin = false;
-        $scope.msgLoginErr = true;
+      $scope.email = "";
+      $scope.password = "";
+      $scope.validLogin = false;
+      $scope.msgLoginErr = true;
+      $scope.user = {};
+
+      $scope.login = function () {
+        var id = $scope.email;
+        var pw = $scope.password;
         
-        console.log($scope.msgLoginErr);
-
-        /*$scope.login = function(){
-            console.log("Logging in "); with " + user + " " + pw);
-            $http.get("../ajax/login.php")
-                .then(function(response){
-                    $scope.logins = response.data.records;
-            });
-        }*/
-        var dummy = {
-            email: "dummy@test.com",
-            password: "dummy"
-        };
-
-        function validateEmail(email) {
-            if (email == dummy.email) {
-                return true;
+        $http.get("app/ajax/login.php?id=" + id + "&pw=" + pw)
+          .then(function (response) {
+//            console.log(response);
+            if (response.data.length > 0) {
+              $scope.user = response.data[0]
+//              console.log($scope.user);
+              return true;
             } else {
-                return false;
+              return false;
             }
-        }
-
-        function validatePassword(pass) {
-            if (pass == dummy.password) {
-                return true;
+          })
+          .then(function (response) {
+            if (response) {
+//              console.log("Response was true");
+              $location.path('/registration');
             } else {
-                return false;
+              $scope.msgLoginErr = false;
+//              console.log("Response was false");
             }
-        }
-        $scope.login = function () {
-            $scope.validLogin = (validateEmail($scope.email) && validatePassword($scope.password));
-            console.log($scope.validLogin);
-            console.log($scope.masterLogins);
-            if ($scope.validLogin != true) {
-                $scope.msgLoginErr = false;
-                console.log($scope.msgLoginErr);
-            } else {
-                $location.path('/registration');                
-            }
-        }
+          });
+      }
     });
 })();
