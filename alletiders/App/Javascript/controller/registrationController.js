@@ -1,48 +1,58 @@
 (function () {
-  console.log("registrationController.js is loaded!");
-  var app = angular.module('registration', []);
+    console.log("registrationController.js is loaded!");
+    var app = angular.module('registration', []);
 
-  app.controller('registrationController', function ($scope, $http) {
-    $scope.msgSuccess = true;
+    app.controller('registrationController', function ($scope, $http, userData) {
+        $scope.msgSuccess = true;
 
-    $scope.laug = ["temp-laug"];
-    $scope.frivillige = ["dummy"];
+        $http.get("app/ajax/laug.php")
+            .then(function (response) {
+                $scope.laug = response.data;
+            });
 
-    var defaultForm = {
-      selectedProjectLaug: null,
-      selectedFrivillig: null,
-      hours: NaN,
-      date: undefined,
-      author: null
-    }
+        $scope.frivillige = ["dummy"];
 
-    $scope.downloadRegistrations = function () {
-      console.log("Funktionen bliver kaldt!")
-      $http.get("app/ajax/csv-handling.php").then(function (response) {
-        console.log(response);
-      });
-    }
+        console.log(userData.get());
 
-    $scope.form = angular.copy(defaultForm);
+        var defaultForm = {
+            selectedProjectLaug: null,
+            selectedFrivillig: null,
+            hours: NaN,
+            date: undefined,
+            author: null
+        }
 
-    $scope.registerTime = function () {
+        $scope.downloadRegistrations = function () {
+            console.log("Funktionen bliver kaldt!")
+            $http.get("app/ajax/csv-handling.php").then(function (response) {
+                console.log(response);
+            });
+        }
 
-      if ($scope.timeForm.$valid) {
-        $scope.msgSuccess = false;
-
-        var tempObj = $scope.form;
         $scope.form = angular.copy(defaultForm);
-        $scope.timeForm.$setUntouched();
-        $scope.timeForm.$setPristine();
 
-        return tempObj;
-      }
-    };
+        $scope.laugChanged = function () {
+            console.log("laug changed!");
+        }
 
-    $scope.cancel = function () {
-      $scope.timeForm.$setPristine();
-      $scope.form = angular.copy(defaultForm);
-      console.log("empty");
-    };
-  });
+        $scope.registerTime = function () {
+
+            if ($scope.timeForm.$valid) {
+                $scope.msgSuccess = false;
+
+                var tempObj = $scope.form;
+                $scope.form = angular.copy(defaultForm);
+                $scope.timeForm.$setUntouched();
+                $scope.timeForm.$setPristine();
+
+                return tempObj;
+            }
+        };
+
+        $scope.cancel = function () {
+            $scope.timeForm.$setPristine();
+            $scope.form = angular.copy(defaultForm);
+            console.log("empty");
+        };
+    });
 })();

@@ -1,7 +1,7 @@
 (function () {
   console.log("loginController.js is loaded!");
-  angular.module('login')
-    .controller("loginController", function ($scope, $http, $location) {
+  angular.module('login', [])
+    .controller("loginController", function ($scope, $http, $location, userData) {
 
       $scope.email = "";
       $scope.password = "";
@@ -27,6 +27,7 @@
           .then(function (response) {
             if (response) {
 //              console.log("Response was true");
+                userData.set($scope.user);
               $location.path('/registration');
             } else {
               $scope.msgLoginErr = false;
