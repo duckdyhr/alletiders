@@ -13,12 +13,11 @@
         die("Connection failed: " . $conn->connect_error);
     }   
 
-    $sql = "SELECT name FROM Laug";
+    $sql = "SELECT name, id FROM Laug";
     if($result = $conn->query($sql)){
         $resultArr = array();
         while($rs = $result->fetch_array(MYSQLI_ASSOC)) {
-            array_push($resultArr, utf8_encode($rs['name']));
-        //$resultArr[]= array("name"=>$rs['name']);
+          $resultArr[]= array("name"=> utf8_encode($rs['name']), "id"=> $rs['id']); 
         }
         
         //var_dump($resultArr);

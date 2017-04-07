@@ -1,42 +1,43 @@
-<div ng-app="registration">
-  <div ng-controller="registrationController">
-    <div class="container">
-      <h2>
-        Timeregistrering
-        <br>
-        <small>Registrér timer for en frivillig:</small>
-      </h2>
-      <div ng-hide="msgSuccess" class="alert alert-success alert-dismissable fade in">
-        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> Timeregistrering fuldført!
+<div>
+  <div class="container">
+    <h2>
+      Timeregistrering
+      <br>
+      <small>Registrér timer for en frivillig:</small>
+    </h2>
+    <div ng-hide="msgSuccess" class="alert alert-success fade in">
+      <a ng-click="closeMsgSuccess()" class="close" aria-label="close">&times;</a> Timeregistrering fuldført!
+    </div>
+    <div ng-hide="msgError" class="alert alert-danger fade in">
+      <a ng-click="closeMsgError()" class="close" aria-label="close">&times;</a> Ikke alle felter er udfyldte!
+    </div>
+  </div>
+  <div class="container">
+    <form name="timeForm" ng-submit="processRegistration()" novalidate>
+      <div class="form-group">
+        <label for="selectedProjectLaug">Laug eller projekt:</label>
+        <select name="selectedProjectLaug" ng-model="form.selectedProjectLaug" ng-change="laugChanged()" class="form-control" ng-options="x as x.name for x in laug" required></select>
       </div>
-    </div>
-    <div class="container">
-      <form name="timeForm" ng-submit="processRegistration()" novalidate>
-        <div class="form-group">
-          <label for="selectedProjectLaug">Laug eller projekt:</label>
-          <select name="selectedProjectLaug" ng-model="form.selectedProjectLaug" ng-change="laugChanged()" class="form-control" ng-options="x for x in laug" required></select>
-        </div>
-        <div class="form-group">
-          <label for="selectedFrivillig">Frivillig:</label>
-          <select name="selectedFrivillig" ng-model="form.selectedFrivillig" class="form-control" ng-options="x as x.name for x in frivillige" required></select>
-        </div>
-        <div class="form-group">
-          <label for="hours">Antal timer:</label>
-            <select name="hours" ng-model="form.selectedHours" class="form-control" ng-options="x for x in hours" required></select>
-        </div>
-        <div class="form-group">
-          <label for="date">Dato:</label>
-          <input type="date" name="date" class="form-control" ng-model="form.date" placeholder="dd-MM-yyyy" required>
-        </div>
-        <div class="form-group">
-          <label for="author">Registreret af:</label>
-          <input name="author" type="text" class="form-control" ng-model="form.author" required>
-          <span ng-show="timeForm.author.$invalid && timeForm.author.$dirty">The author is required.</span>
-        </div>
-        <button type="submit" id="btnRegister" class="btn btn-info" ng-disabled="timeForm.$invalid">Send registrering</button>
-        <button type="button" class="btn btn-info" ng-click="cancel()">Start forfra</button>
-        <button type="button" class="btn btn-info" ng-click="downloadRegistrations()">Download timeregistreringsdata som CSV</button>
-      </form>
-    </div>
+      <div class="form-group">
+        <label for="selectedFrivillig">Frivillig:</label>
+        <select name="selectedFrivillig" ng-model="form.selectedFrivillig" class="form-control" ng-options="x as x.name for x in frivillige" required></select>
+      </div>
+      <div class="form-group">
+        <label for="hours">Antal timer:</label>
+        <select name="hours" ng-model="form.selectedHours" class="form-control" ng-options="x for x in hours" required></select>
+      </div>
+      <div class="form-group">
+        <label for="date">Dato:</label>
+        <input type="date" name="date" class="form-control" ng-model="form.date" placeholder="dd-MM-yyyy" required>
+      </div>
+      <div class="form-group">
+        <label for="author">Registreret af:</label>
+        <input name="author" type="text" class="form-control" ng-model="form.author" required>
+        <span ng-show="timeForm.author.$invalid && timeForm.author.$dirty">The author is required.</span>
+      </div>
+      <button type="submit" id="btnRegister" class="btn btn-info">Send registrering</button>
+      <button type="button" class="btn btn-info" ng-click="cancel()">Start forfra</button>
+      <button type="button" class="btn btn-info" ng-click="downloadRegistrations()">Download timeregistreringsdata som CSV</button>
+    </form>
   </div>
 </div>

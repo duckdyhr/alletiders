@@ -6,8 +6,8 @@
     $password = "joan9999";
     $dbname = "joan";
 
-    //$laugId = $_GET['laugId'];
-    $laugId = '1';
+    $laugId = $_GET['laugId'];
+    //$laugId = '21';
 
     $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -16,7 +16,7 @@
         die("Connection failed: " . $conn->connect_error);
     }
     
-    $sql = "SELECT firstname, middlename, lastname FROM Member";
+    $sql = "SELECT Member.firstname, Member.middlename, Member.lastname FROM Member LEFT JOIN Member_Laug ON Member.id = Member_Laug.memberId WHERE Member_Laug.laugId = " . $laugId;
     
     if($result = $conn->query($sql)) {
       $resultArr = array();
