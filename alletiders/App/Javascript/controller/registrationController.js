@@ -55,10 +55,16 @@
       $scope.closeMsgError = function () {
         $scope.msgError = true;
       }
+      
+      $scope.closeMsgSuccess = function () {
+        $scope.msgSuccess = true;
+      }
 
       $scope.cancel = function () {
         $scope.timeForm.$setPristine();
         $scope.form = angular.copy(defaultForm);
+        $scope.msgError = true;
+        $scope.msgSuccess = true;
         console.log("empty");
       };
 

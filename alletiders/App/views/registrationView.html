@@ -5,8 +5,8 @@
       <br>
       <small>Registrér timer for en frivillig:</small>
     </h2>
-    <div ng-hide="msgSuccess" class="alert alert-success alert-dismissable fade in">
-      <a href="/login" class="close" data-dismiss="alert" aria-label="close">&times;</a> Timeregistrering fuldført!
+    <div ng-hide="msgSuccess" class="alert alert-success fade in">
+      <a ng-click="closeMsgSuccess" class="close" aria-label="close">&times;</a> Timeregistrering fuldført!
     </div>
     <div ng-hide="msgError" class="alert alert-danger fade in">
       <a ng-click="closeMsgError()" class="close" aria-label="close">&times;</a> Ikke alle felter er udfyldte!
