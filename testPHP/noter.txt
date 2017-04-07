@@ -48,3 +48,11 @@ CREATE TABLE Login (
     FOREIGN KEY(memberId) REFERENCES Member(Id)
 );
 INSERT INTO `Login` (`userId`, `userPW`, `memberId`) VALUES ('anne@test.com', 'anne', '2');
+
+**************************************************************************************************
+SELECT laugId from Member_Laug WHERE laugId = 1;
+
+SELECT Member.firstname, Member.id, Member_Laug.laugId 
+	FROM Member 
+    LEFT JOIN Member_Laug 
+        ON Member.id=Member_Laug.memberId

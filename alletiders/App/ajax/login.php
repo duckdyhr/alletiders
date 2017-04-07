@@ -6,10 +6,10 @@
     $password = "joan9999";
     $dbname = "joan";
 
-//    $userId = $_GET['id'];
-//    $userPW = $_GET['pw'];
-    $userId = 'johan@test.com';
-    $userPW = 'johan';
+    $userId = $_GET['id'];
+    $userPW = $_GET['pw'];
+//    $userId = 'johan@test.com';
+//    $userPW = 'johan';
 
     $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -27,7 +27,7 @@
     if($result = $conn->query($sql)) {
       $resultArr = array();
       while($rs = $result->fetch_array(MYSQLI_ASSOC)) {
-          $resultArr[]= array("id"=>$rs['userId'], "pw"=>$rs['userPW'], "memberID"=>$rs['memberId']);
+          $resultArr[]= array("id"=>utf8_encode($rs['userId']), "pw"=>utf8_encode($rs['userPW']), "memberID"=>utf8_encode($rs['memberId']));
       }
       
       $resultArr[] = array("GETid"=>$userId, "GETpw"=>$userPW, "params"=>$parameter);
