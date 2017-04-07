@@ -29,7 +29,7 @@
     $outp = "";
   }
   
-  $file = fopen(__DIR__ . "/../download/udtraek.csv", "w") or die ("Unable to open file!");
+  $file = fopen(__DIR__ . "/../download/registreringer.csv", "w+") or die ("Unable to open file!");
   
   foreach ($list as $line) {
     fputcsv($file,explode(',',$line));
@@ -38,22 +38,22 @@
   fclose($file);
   $conn->close();
 
-//  echo($outp);
-//  $myFile = 'app/download/udtraek.csv';
+  $myFile = __DIR__ . "/../download/registreringer.csv";
   
-//  if(file_exists($myFile)){
-//    header('HTTP/1.1 200 OK');
-//    header('Content-Description: File Transfer');
-//    header('Content-Type: text/csv');
-//    header('Content-Disposition: attachment, filename="'.basename($myFile).'"');
-//    header('Expires: 0');
-//    header('Cache-Control: must-revalidate');
-//    header('Pragma: public');
-//    header('Content-Length: '.filesize($myFile));
-//    readfile($myFile);
-//    exit;
-//  } else {
-//    echo 'File missing!';
-//  }
+  if(file_exists($myFile)){
+    echo 'File Exists!';
+    header('HTTP/1.1 200 OK');
+    header('Content-Description: File Transfer');
+    header('Content-Type: text/csv');
+    header('Content-Disposition: attachment, filename="'.basename($myFile).'"');
+    header('Expires: 0');
+    header('Cache-Control: must-revalidate');
+    header('Pragma: public');
+    header('Content-Length: '.filesize($myFile));
+    readfile($myFile);
+    exit;
+  } else {
+    echo 'File missing!';
+  }
 
 ?>
