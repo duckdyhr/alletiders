@@ -16,12 +16,12 @@
                 $scope.frivillige = response.data;
             });
 
-        $scope.hours = [1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12];
+        $scope.hours = [1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
 
         var defaultForm = {
             selectedProjectLaug: null,
             selectedFrivillig: null,
-            selectedHours: $scope.hours[3],
+            selectedHours: $scope.hours[0],
             date: new Date(),
             author: userData.get().id
         }
@@ -29,22 +29,34 @@
         $scope.form = angular.copy(defaultForm);
 
         $scope.laugChanged = function () {
-            console.log("laug changed!");
-            console.log($scope.frivillige);
-            console.log($scope.laug);
+            //console.log("laug changed!");
+            //console.log($scope.frivillige);
+            //console.log($scope.laug);
         }
 
+        $scope.processRegistration = function () {
+            $scope.registerTime();
+            $http({
+                    method: 'POST',
+                    url: 'app/ajax/sendRegistration.php',
+                    data: $.param($scope.form),
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    }
+                })
+                .then(function (data) {
+                    console.log(data);
+                    //og noget mere...
+                })
+        }
+        
         $scope.registerTime = function () {
-            var registrationParams = JSON.stringify($scope.form);
-            $http.post("...?x="+registrationParams);
-            
             if ($scope.timeForm.$valid) {
                 $scope.msgSuccess = false;
                 var tempObj = $scope.form;
                 $scope.form = angular.copy(defaultForm);
                 $scope.timeForm.$setUntouched();
                 $scope.timeForm.$setPristine();
-
                 return tempObj;
             }
         };
