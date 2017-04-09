@@ -2,7 +2,7 @@
   console.log("loginController.js is loaded!");
   angular.module('login', [])
     .controller("loginController", function ($scope, $http, $location, userData) {
-      console.log("double-print test");
+      //console.log("double-print test");
 
       $scope.email = "";
       $scope.password = "";

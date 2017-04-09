@@ -2,9 +2,10 @@
 	console.log("registrationController.js is loaded!");
 	angular.module('registration', [])
 		.controller('registrationController', function ($scope, $http, userData) {
-			console.log(userData.get());
 			$scope.msgSuccess = true;
 			$scope.msgError = true;
+
+			$scope.author = userData.get();
 
 			var laugId = 0;
 
@@ -13,19 +14,18 @@
 					$scope.laug = response.data;
 				});
 
-			$scope.hours = [1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+			$scope.hours = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
 
 			var defaultForm = {
 				selectedProjectLaug: null,
 				selectedFrivillig: null,
 				selectedHours: $scope.hours[0],
 				date: new Date(),
-				author: userData.get().id
 			}
-		
+
 			$scope.form = angular.copy(defaultForm);
-			
-		 $scope.getMembers = function () {
+
+			$scope.getMembers = function () {
 				$http.get("app/ajax/membersLaug.php?laugId=" + laugId)
 					.then(function (response) {
 						$scope.frivillige = response.data;
@@ -36,7 +36,7 @@
 				$http({
 						method: 'POST',
 						url: 'app/ajax/sendRegistration.php',
-						data: $.param($scope.form),
+						data: $.param($scope.prepareData()),
 						headers: {
 							'Content-Type': 'application/x-www-form-urlencoded'
 						}
@@ -47,17 +47,31 @@
 					})
 			}
 
+			$scope.prepareData = function () {
+				return {
+					laugId: $scope.form.selectedProjectLaug.id,
+					memberId: $scope.form.selectedFrivillig.id,
+					date: $scope.form.date,
+					hours: $scope.form.selectedHours,
+					author: $scope.author.memberID
+				}
+			}
+
 			$scope.registerTime = function () {
+				//console.log("timeForm.$valid");
+				//console.log($scope.timeForm.$valid);
 				if ($scope.timeForm.$valid) {
+					$scope.processRegistration();
 					$scope.msgSuccess = false;
+					$scope.msgError = true;
 					var tempObj = $scope.form;
 					$scope.form = angular.copy(defaultForm);
 					$scope.timeForm.$setUntouched();
 					$scope.timeForm.$setPristine();
-					$scope.processRegistration();
 					return tempObj;
 				} else {
 					$scope.msgError = false;
+					$scope.msgSuccess = true;
 				}
 			};
 

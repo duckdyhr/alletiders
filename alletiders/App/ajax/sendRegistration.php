@@ -8,13 +8,14 @@
     
     date_default_timezone_set("Europe/Copenhagen");
 
-    $laugId = 21;
-    $memberId = 1;
-    //$hours = $_POST['selectedHours'];
-    $hours = 2;
+    $laugId = $_POST['laugId'];
+    $memberId = $_POST['memberId'];
+    $hours = $_POST['hours'];
+    //$hours = 2;
     //$date = $_POST['date'];
-    $date = "2016-04-14";
-    $authorId = 1;
+    $date = "2016-04-20";
+    $authorId = $_POST['author'];
+
     $conn = new mysqli($servername, $username, $password, $dbname);
 
     // Check connection
@@ -35,10 +36,10 @@
     $sql .= ");";
 
     if($conn->query($sql) === TRUE){
-        //echo "New record created successfully";
+        //echo json_encode(array($sql));
         
     }else{
-        //echo "Error: " . $sql . "\n" . $conn->error;
+		  //echo json_encode(array($sql));
     }
     
     $conn->close();

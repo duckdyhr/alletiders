@@ -13,14 +13,14 @@
     </div>
   </div>
   <div class="container">
-    <form name="timeForm" ng-submit="processRegistration()" novalidate>
+    <form name="timeForm" ng-submit="registerTime()" novalidate>
       <div class="form-group">
         <label for="selectedProjectLaug">Laug eller projekt:</label>
-        <select name="selectedProjectLaug" ng-model="form.selectedProjectLaug" ng-change="laugChanged()" class="form-control" ng-options="x as x.name for x in laug" required></select>
+        <select name="selectedProjectLaug" ng-model="form.selectedProjectLaug" ng-change="laugChanged()" class="form-control" ng-options="x as x.name for x in laug | orderBy : 'name'" required></select>
       </div>
       <div class="form-group">
         <label for="selectedFrivillig">Frivillig:</label>
-        <select name="selectedFrivillig" ng-model="form.selectedFrivillig" class="form-control" ng-options="x as x.name for x in frivillige" required></select>
+        <select name="selectedFrivillig" ng-model="form.selectedFrivillig" class="form-control" ng-options="x as x.name for x in frivillige | orderBy : 'name'" required></select>
       </div>
       <div class="form-group">
         <label for="hours">Antal timer:</label>
@@ -32,8 +32,7 @@
       </div>
       <div class="form-group">
         <label for="author">Registreret af:</label>
-        <input name="author" type="text" class="form-control" ng-model="form.author" required>
-        <span ng-show="timeForm.author.$invalid && timeForm.author.$dirty">The author is required.</span>
+        <input id="authorInput" name="author" type="text" class="form-control" value="{{author.id}}" disabled required>
       </div>
       <button type="submit" id="btnRegister" class="btn btn-info">Send registrering</button>
       <button type="button" class="btn btn-info" ng-click="cancel()">Start forfra</button>

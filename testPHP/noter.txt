@@ -51,8 +51,3 @@ INSERT INTO `Login` (`userId`, `userPW`, `memberId`) VALUES ('anne@test.com', 'a
 
 **************************************************************************************************
 SELECT laugId from Member_Laug WHERE laugId = 1;
-
-SELECT Member.firstname, Member.id, Member_Laug.laugId 
-	FROM Member 
-    LEFT JOIN Member_Laug 
-        ON Member.id=Member_Laug.memberId

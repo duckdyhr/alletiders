@@ -16,14 +16,14 @@
         die("Connection failed: " . $conn->connect_error);
     }
     
-    $sql = "SELECT Member.firstname, Member.middlename, Member.lastname FROM Member LEFT JOIN Member_Laug ON Member.id = Member_Laug.memberId WHERE Member_Laug.laugId = " . $laugId;
+    $sql = "SELECT Member.firstname, Member.middlename, Member.lastname, Member.id FROM Member LEFT JOIN Member_Laug ON Member.id = Member_Laug.memberId WHERE Member_Laug.laugId = " . $laugId;
     
     if($result = $conn->query($sql)) {
       $resultArr = array();
       while($rs = $result->fetch_array(MYSQLI_ASSOC)) {
           $name = utf8_encode($rs['firstname'] . " " . $rs['middlename'] . " " . $rs['lastname']);
           //$resultArr[]= array("name"=> utf8_encode($rs['firstname']));
-          $resultArr[]= array("name"=> $name);
+          $resultArr[]= array("name"=> $name, "id"=> $rs['id']);
       }
       
       //$resultArr[] = array("GETid"=>$userId, "GETpw"=>$userPW, "params"=>$parameter);
