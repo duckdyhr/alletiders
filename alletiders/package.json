@@ -13,5 +13,8 @@
     "karma-chrome-launcher": "^2.0.0",
     "karma-jasmine": "^1.1.0",
     "watchify": "^3.9.0"
+  },
+  "dependencies": {
+    "angular-cookies": "^1.6.4"
   }
 }

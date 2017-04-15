@@ -26,11 +26,12 @@
 
     if($result = $conn->query($sql)) {
       $resultArr = array();
+		//$resultArr = array("success"=>true);
       while($rs = $result->fetch_array(MYSQLI_ASSOC)) {
           $resultArr[]= array("id"=>utf8_encode($rs['userId']), "pw"=>utf8_encode($rs['userPW']), "memberID"=>utf8_encode($rs['memberId']));
       }
       
-      $resultArr[] = array("GETid"=>$userId, "GETpw"=>$userPW, "params"=>$parameter);
+      //$resultArr[] = array("GETid"=>$userId, "GETpw"=>$userPW, "params"=>$parameter);
       echo json_encode($resultArr);
     } else {
       //whatever...

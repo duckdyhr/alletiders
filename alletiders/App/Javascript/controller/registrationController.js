@@ -1,3 +1,5 @@
+'use strict';
+
 (function () {
 	console.log("registrationController.js is loaded!");
 	angular.module('registration', [])
@@ -42,6 +44,7 @@
 						}
 					})
 					.then(function (data) {
+					console.log("Response sendRegistration.php");
 						console.log(data);
 						//og noget mere...
 					})
@@ -51,7 +54,7 @@
 				return {
 					laugId: $scope.form.selectedProjectLaug.id,
 					memberId: $scope.form.selectedFrivillig.id,
-					date: $scope.form.date,
+					date: $scope.formateDate($scope.form.date),
 					hours: $scope.form.selectedHours,
 					author: $scope.author.memberID
 				}
@@ -102,6 +105,13 @@
 					.then(function (response) {
 						console.log(response);
 					});
+			}
+			$scope.formateDate = function(oldDate){
+				var y = oldDate.getFullYear();
+				var m = oldDate.getMonth()+1;
+				var d = oldDate.getDate();
+				console.log(y + '-' + m + '-' + d);
+				return y + '-' + m + '-' + d;
 			}
 		});
 })();
