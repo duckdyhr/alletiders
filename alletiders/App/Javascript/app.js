@@ -3,7 +3,7 @@
 (function () {
 	console.log("app.js is loaded! v 1.0");
 	var app = angular.module('app', ['login', 'registration', 'ngRoute']);
-	
+
 	app.config(function ($routeProvider) {
 		$routeProvider
 			.when('/login', {
@@ -20,18 +20,15 @@
 			});
 	}).$inject = ['$routeProvider'];
 
-	/*app.run(['$rootScope', '$location', '$http', 'userData', 'authenticationService', function ($rootScope, $location, $http, userData, authenticationService) {
-		authenticationService.clear();
-		if (userData.isSet()) {
-			//TODO!
-			$http.defaults.headers.common['Authorization'] = 'Basic '; // jshint ignore:line
-		}
-
-		$rootScope.$on('$locationChangeStart', function (event, next, current) {
-			//redirect to login page if not logged in
-			if ($location.path() !== '/login' && !userData.isSet()) {
-				$location.path('/login');
-			}
-		});
-	}])*/
+	app.run(['$rootScope', '$location', 'userData',
+		function ($rootScope, $location, userData) {
+			$rootScope.$on('$locationChangeStart', function (event, next, current) {
+				console.log("$locationChangeStart event");
+				console.log(userData.get());
+				console.log("isSet: " + userData.isSet());
+				if ($location.path() !== '/login' && !userData.isSet()) {
+					$location.path('/login');
+				}
+			});
+	}]);
 })();

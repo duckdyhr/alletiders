@@ -15,8 +15,6 @@
     $date = $_POST['date'];
     //$date = "2016-07-20";
     $authorId = $_POST['author'];
-	
-	//echo json_encode(array($date));
 
     $conn = new mysqli($servername, $username, $password, $dbname);
 

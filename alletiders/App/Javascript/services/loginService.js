@@ -1,6 +1,8 @@
+'use strict';
+
 (function () {
 	angular.module('app')
-		.factory('authenticationService', ['$http', 'userData', function ($http, userData) {
+		.factory('loginService', ['$http', function ($http) {
 			var service = {};
 
 			service.login = function (username, password, callback) {
@@ -23,20 +25,6 @@
 					});
 			};
 
-			//			service.setCredentials = function (username, password) {
-			//				var authdata = (username + ':' + password);
-			//				var user = {
-			//					id: username,
-			//					pw: password
-			//				}
-			//				userData.set(user);
-			//				$http.defaults.headers.common['Authorization'] = 'Basic '; // jshint ignore:line
-			//			};
-
-			service.clearCredentials = function () {
-				userData.clear();
-				$http.defaults.headers.common.Authorization = 'Basic ';
-			};
 			return service;
 	}])
 })();
