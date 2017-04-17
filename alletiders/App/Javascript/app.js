@@ -27,8 +27,10 @@
 				//console.log(userData.get());
 				//console.log("isSet: " + userData.isSet());
 				if ($location.path() !== '/login' && !userData.isSet()) {
+					if ($location.path() !== '/login') {
+						alert("Du er ikke logget ind");
+					}
 					$location.path('/login');
-					alert("Du er ikke logget ind");
 				}
 			});
 	}]);
