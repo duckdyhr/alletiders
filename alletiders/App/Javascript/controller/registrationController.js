@@ -1,7 +1,6 @@
 'use strict';
 
 (function () {
-	console.log("registrationController.js is loaded!");
 	angular.module('registration', [])
 		.controller('registrationController', function ($scope, $http, userData) {
 			$scope.msgSuccess = true;
@@ -61,8 +60,6 @@
 			}
 
 			$scope.registerTime = function () {
-				//console.log("timeForm.$valid");
-				//console.log($scope.timeForm.$valid);
 				if ($scope.timeForm.$valid) {
 					$scope.processRegistration();
 					$scope.msgSuccess = false;
@@ -100,7 +97,6 @@
 			};
 
 			$scope.downloadRegistrations = function () {
-//				console.log("Funktionen bliver kaldt!");
 				$http.get("app/ajax/csv-handling.php")
 					.then(function (response) {
 						console.log(response);

@@ -31,7 +31,13 @@
 	</nav>
 
 	<ng-view></ng-view>
-
+	
+	<!--
+	Kan ikke bruge devices' kamera over http
+	<div class="container" ng-controller="qrController">
+		<qr-scanner ng-success="onSuccess(data)" width="400" height="300"></qr-scanner>
+	</div>-->
+	
 	<script src="app/libraries/jquery/jquery-3.2.0.js"></script>
 	<script src="app/libraries/bootstrap/js/bootstrap.js"></script>
 	<script src="app/libraries/angular/angular.js"></script>
@@ -43,6 +49,7 @@
 	<script src="app/javascript/controller/loginController.js"></script>
 	<script src="app/javascript/controller/logoutController.js"></script>
 	<script src="app/javascript/controller/registrationController.js"></script>
+	<script src="app/javascript/controller/qrController.js"></script>
 	<script src="app/javascript/services/loginService.js"></script>
 	<script src="app/javascript/services/userData.js"></script>
 </body>
