@@ -100,7 +100,7 @@
 			};
 
 			$scope.downloadRegistrations = function () {
-				console.log("Funktionen bliver kaldt!");
+//				console.log("Funktionen bliver kaldt!");
 				$http.get("app/ajax/csv-handling.php")
 					.then(function (response) {
 						console.log(response);
