@@ -23,11 +23,12 @@
 	app.run(['$rootScope', '$location', 'userData',
 		function ($rootScope, $location, userData) {
 			$rootScope.$on('$locationChangeStart', function (event, next, current) {
-				console.log("$locationChangeStart event");
-				console.log(userData.get());
-				console.log("isSet: " + userData.isSet());
+				//console.log("$locationChangeStart event");
+				//console.log(userData.get());
+				//console.log("isSet: " + userData.isSet());
 				if ($location.path() !== '/login' && !userData.isSet()) {
 					$location.path('/login');
+					alert("Du er ikke logget ind");
 				}
 			});
 	}]);
