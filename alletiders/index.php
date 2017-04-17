@@ -16,10 +16,10 @@
 		<div class="container-fluid">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-         <span class="icon-bar"></span>
-         <span class="icon-bar"></span>
-         <span class="icon-bar"></span>
-        </button>
+         		<span class="icon-bar"></span>
+         		<span class="icon-bar"></span>
+         		<span class="icon-bar"></span>
+        		</button>
 				<a class="navbar-brand" href="#">AlleTiders</a>
 			</div>
 			<div class="collapse navbar-collapse" id="myNavbar" ng-controller="logoutController as logoutCtrl">
@@ -36,7 +36,8 @@
 	<script src="app/libraries/bootstrap/js/bootstrap.js"></script>
 	<script src="app/libraries/angular/angular.js"></script>
 	<script src="app/libraries/angular-route/angular-route.js"></script>
-	<script src="app/libraries/angular-cookies/angular-cookies.js"></script>
+	<script src="app/libraries/angular-qr-scanner/qr-scanner.js"></script>
+	<script src="app/libraries/angular-qr-scanner/src/jsqrcode-combined.min.js"></script>
 
 	<script src="app/javascript/app.js"></script>
 	<script src="app/javascript/controller/loginController.js"></script>
