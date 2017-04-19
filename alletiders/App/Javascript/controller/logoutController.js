@@ -1,12 +1,11 @@
 "use strict";
 
-(function(){
+(function () {
 	angular.module('app')
-		.controller("logoutController", function($location, userData){
-		this.logout = function(){
-			console.log("logging out...");
-            $location.path('/login');
-			userData.clear();
-		}
-	});
+		.controller("logoutController", function ($location, userData) {
+			this.logout = function () {
+				$location.path('/login');
+				userData.clear();
+			}
+		});
 })();

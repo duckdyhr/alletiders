@@ -8,11 +8,8 @@
         $scope.email = "";
         $scope.password = "";
         $scope.msgLoginErr = true;
-        //$scope.user = {};
-        $scope.loginNew = function () {
+        $scope.login = function () {
           loginService.login($scope.email, $scope.password, function (response) {
-            console.log("loginService.loginNew() response");
-            console.log(response);
             if (response.success) {
               userData.set(response.user);
               $location.path('/registration');

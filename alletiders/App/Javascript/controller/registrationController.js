@@ -43,8 +43,8 @@
 						}
 					})
 					.then(function (data) {
-					console.log("Response sendRegistration.php");
-						console.log(data);
+					//console.log("Response sendRegistration.php");
+						//console.log(data);
 						//og noget mere...
 					})
 			}
