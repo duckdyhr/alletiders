@@ -5,10 +5,11 @@
   angular.module('login', [])
     .controller("loginController",
       function ($scope, $http, $location, userData, loginService) {
+    
         $scope.email = "";
         $scope.password = "";
         $scope.msgLoginErr = true;
-        //$scope.user = {};
+
         $scope.loginNew = function () {
           loginService.login($scope.email, $scope.password, function (response) {
             console.log("loginService.loginNew() response");
