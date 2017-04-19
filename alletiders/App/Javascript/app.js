@@ -1,7 +1,7 @@
 'use strict';
 
 (function () {
-	var app = angular.module('app', ['login', 'qrScanner', 'registration', 'ngRoute']);
+	var app = angular.module('app', ['login', 'registration', 'ngRoute']);
 
 	app.config(function ($routeProvider) {
 		$routeProvider
