@@ -3,7 +3,7 @@
     <h2>
       Timeregistrering
       <br>
-      <small>Registrér timer for en frivillig:</small>
+      <small class="subtitle">Registrér timer for en frivillig:</small>
     </h2>
     <div ng-hide="msgSuccess" class="alert alert-success fade in">
       <a ng-click="closeMsgSuccess()" class="close" aria-label="close">&times;</a> Timeregistrering fuldført!
@@ -15,23 +15,23 @@
   <div class="container">
     <form name="timeForm" ng-submit="registerTime()" novalidate>
       <div class="form-group">
-        <label for="selectedProjectLaug">Laug eller projekt:</label>
+        <label class="label" for="selectedProjectLaug">Laug eller projekt:</label>
         <select name="selectedProjectLaug" ng-model="form.selectedProjectLaug" ng-change="laugChanged()" class="form-control" ng-options="x as x.name for x in laug | orderBy : 'name'" required></select>
       </div>
       <div class="form-group">
-        <label for="selectedFrivillig">Frivillig:</label>
+        <label class="label" for="selectedFrivillig">Frivillig:</label>
         <select name="selectedFrivillig" ng-model="form.selectedFrivillig" class="form-control" ng-options="x as x.name for x in frivillige | orderBy : 'name'" required></select>
       </div>
       <div class="form-group">
-        <label for="hours">Antal timer:</label>
+        <label class="label" for="hours">Antal timer:</label>
         <select name="hours" ng-model="form.selectedHours" class="form-control" ng-options="x for x in hours" required></select>
       </div>
       <div class="form-group">
-        <label for="date">Dato:</label>
+        <label class="label" for="date">Dato:</label>
         <input type="date" name="date" class="form-control" ng-model="form.date" placeholder="dd-MM-yyyy" required>
       </div>
       <div class="form-group">
-        <label for="author">Registreret af:</label>
+        <label class="label" for="author">Registreret af:</label>
         <input id="authorInput" name="author" type="text" class="form-control" value="{{author.id}}" disabled required>
       </div>
       <button type="submit" id="btnRegister" class="btn btn-info">Send registrering</button>
