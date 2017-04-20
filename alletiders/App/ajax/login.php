@@ -16,41 +16,26 @@
     // Check connection
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
-    }   
+    }
 
-    $sql = "SELECT userId, userPW, memberId FROM Login WHERE userId='";
-    $sql .= $userId;
-    $sql .= "' AND userPW='";
-    $sql .= $userPW;
-    $sql .= "';";
-
-    if($result = $conn->query($sql)) {
-      $resultArr = array();
-		//$resultArr = array("success"=>true);
-      while($rs = $result->fetch_array(MYSQLI_ASSOC)) {
+    if($userId != "" && $userPW != ""){
+      echo "true!";
+      $sql = "SELECT userId, userPW, memberId FROM Login WHERE userId='";
+      $sql .= $userId;
+      $sql .= "' AND userPW='";
+      $sql .= $userPW;
+      $sql .= "';";  
+      if($result = $conn->query($sql)) {
+        $resultArr = array();
+        while($rs = $result->fetch_array(MYSQLI_ASSOC)) {
           $resultArr[]= array("id"=>utf8_encode($rs['userId']), "pw"=>utf8_encode($rs['userPW']), "memberID"=>utf8_encode($rs['memberId']));
+        }
+        echo json_encode($resultArr);
+      } else {
       }
-      
-      //$resultArr[] = array("GETid"=>$userId, "GETpw"=>$userPW, "params"=>$parameter);
-      echo json_encode($resultArr);
     } else {
-      //whatever...
+      echo "false";
     }
 
     $conn->close();
-    
-//    $sql = "SELECT * FROM Login";
-//    $result = $conn->query($sql);
-//
-//    $outp="";
-//    while($rs = $result->fetch_array(MYSQLI_ASSOC)) {
-//        if ($outp != "") {$outp .= ",";}
-//        $outp .= '{"memberId":"'  . $rs["memberId"] . '",';
-//        $outp .= '"userId":"'   . $rs["userId"]        . '",';
-//        $outp .= '"userPW":"'. $rs["userPW"]     . '"}';
-//    }
-//    $outp ='{"records":['.$outp.']}';
-//    $conn->close();
-//
-//    echo($outp);
 ?>
