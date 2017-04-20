@@ -54,5 +54,4 @@ describe('login http test', function () {
     loginTest($scope.username, $scope.password);    
     expect($httpBackend.flush).toThrow();
   }));
-  
 });
