@@ -1,58 +1,58 @@
-describe('loginController', function () {
-  beforeEach(module('login'));
-  var $controller;
+describe('login http test', function () {
+  it('runs a test with correct username and correct pasword', inject(function ($http, $httpBackend) {
+    var $scope = {};
 
-  beforeEach(inject(function (_$controller_) {
-    $controller = _$controller_;
-  }));
+    $scope.username = "johan@test.com";
+    $scope.password = "johan";
 
-  describe('$scope.validateUser(u)', function () {
-    var $scope, controller;
-    beforeEach(function () {
-      $scope = {};
-      controller = $controller('loginController', {
-        $scope: $scope
+    function loginTest(username, password) {
+      $http.get("app/ajax/login.php?id=" + username + "&pw=" + password)
+        .then(function (response) {
+          $scope.data = response.data;
+          console.log($scope.data);
+        });
+    }
+
+    $httpBackend
+      .when('GET', "app/ajax/login.php?id=johan@test.com&pw=johan")
+      .respond(200, {
+        id: 'johan@test.com',
+        memberID: 1,
+        pw: 'johan'
       });
-    });
-
-    it('checks if user obj is empty', function () {
-      $scope.email = 'anne@test.com';
-      $scope.password = 'anne';
-      var temp = {};
-      var result = $scope.validateUser(temp);
-      expect(result).toBe(false);
-    });
-
-    it('checks if user obj is not empty', function () {
-      var temp = {
-        id: "anne@test.com",
-        pw: "anne",
-        memberID: "2"
-      };
-      var result = $scope.validateUser(temp);
-      expect(result).toBe(true);
-    });
-  });
-
-  describe('$scope.getUser(id, pw)', function () {
-    var $scope, controller;
     
-    beforeEach(function () {
-      $scope = {};
-      controller = $controller('loginController', {
-        $scope: $scope
+    loginTest($scope.username, $scope.password);
+    $httpBackend.flush();
+
+    expect($scope.data.id).toBe("johan@test.com");
+    expect($scope.data.memberID).toBe(1);
+    expect($scope.data.pw).toBe("johan");
+  }));
+  
+  it('runs a test with no username and no pasword', inject(function ($http, $httpBackend) {
+    var $scope = {};
+
+    $scope.username = "";
+    $scope.password = "";
+
+    function loginTest(username, password) {
+      $http.get("app/ajax/login.php?id=" + username + "&pw=" + password)
+        .then(function (response) {
+          $scope.data = response.data;
+          console.log($scope.data);
+        });
+    }
+
+    $httpBackend
+      .when('GET', "app/ajax/login.php?id=johan@test.com&pw=johan")
+      .respond(200, {
+        id: 'johan@test.com',
+        memberID: 1,
+        pw: 'johan'
       });
-    });
-
-    it('should be defined', function () {
-      var result = $scope.getUser('anne@test.com', 'anne');
-      expect(result).toBeDefined();
-    });
-
-    it('should be empty obj', function () {
-      var temp = {};
-      var result = $scope.getUser('dummy@test.com', 'dummy');
-      expect(result).toEqual(temp);
-    });
-  });
+    
+    loginTest($scope.username, $scope.password);    
+    expect($httpBackend.flush).toThrow();
+  }));
+  
 });

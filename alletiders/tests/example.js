@@ -6,6 +6,6 @@ describe('example test', function(){
 
 describe('add test', function(){
    it('should add numbers', function(){
-        expect(add(2, 5)).toBe(7); 
+        expect((2 + 5)).toBe(7); 
    }); 
 });

@@ -15,6 +15,7 @@ module.exports = function (config) {
     files: [
       'app/libraries/angular/angular.js',
       'app/libraries/angular-mocks/angular-mocks.js',
+      'app/libraries/angular-route/angular-route.js',
       'app/javascript/app.js',
       'app/javascript/controller/*.js',
 			'app/javascript/services/*.js',
@@ -24,7 +25,6 @@ module.exports = function (config) {
     // list of files to exclude
     exclude: [
     ],
-
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
@@ -57,7 +57,6 @@ module.exports = function (config) {
 
     // enable / disable watching file and executing tests whenever any file changes
     autoWatch: true,
-
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher

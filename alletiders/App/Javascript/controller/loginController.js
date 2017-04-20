@@ -5,6 +5,7 @@
   angular.module('login', [])
     .controller("loginController",
       function ($scope, $http, $location, userData, loginService) {
+    
         $scope.email = "";
         $scope.password = "";
         $scope.msgLoginErr = true;
