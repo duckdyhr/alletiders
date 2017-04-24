@@ -3,13 +3,16 @@
 (function () {
 	angular.module('registration', [])
 		.controller('registrationController', function ($scope, $http, userData) {
+			var ctrl = this;
+		//Variabler som bruges til alert boksene's ng-hide attribut
 			$scope.msgSuccess = true;
 			$scope.msgError = true;
 
 			$scope.author = userData.get();
 
 			var laugId = 0;
-
+			
+			//Loader alle laug fra backend
 			$http.get("app/ajax/laug.php")
 				.then(function (response) {
 					$scope.laug = response.data;
@@ -25,7 +28,8 @@
 			}
 
 			$scope.form = angular.copy(defaultForm);
-
+			
+			//Loader alle frivillige knyttet til valgte laug
 			$scope.getMembers = function () {
 				$http.get("app/ajax/membersLaug.php?laugId=" + laugId)
 					.then(function (response) {
@@ -33,48 +37,53 @@
 					});
 			}
 
+			//Sender ny registrering til database
 			$scope.processRegistration = function () {
+				//console.log(ctrl.prepareData());
 				$http({
 						method: 'POST',
 						url: 'app/ajax/sendRegistration.php',
-						data: $.param($scope.prepareData()),
+						data: $.param(ctrl.prepareData()),
 						headers: {
 							'Content-Type': 'application/x-www-form-urlencoded'
 						}
 					})
 					.then(function (data) {
-					//console.log("Response sendRegistration.php");
 						//console.log(data);
 						//og noget mere...
 					})
 			}
 
-			$scope.prepareData = function () {
+			//Formen bliver url/php venligt JS objekt
+			ctrl.prepareData = function () {
 				return {
 					laugId: $scope.form.selectedProjectLaug.id,
 					memberId: $scope.form.selectedFrivillig.id,
-					date: $scope.formateDate($scope.form.date),
+					date: ctrl.formateDate($scope.form.date),
 					hours: $scope.form.selectedHours,
 					author: $scope.author.memberID
 				}
 			}
-
+			
+			//Validerer formen er gyldig før den sendes videre
+			//Feedback vha msgError og msgSuccess binding til alert boksene
 			$scope.registerTime = function () {
 				if ($scope.timeForm.$valid) {
 					$scope.processRegistration();
 					$scope.msgSuccess = false;
 					$scope.msgError = true;
-					var tempObj = $scope.form;
+					//var tempObj = $scope.form;
 					$scope.form = angular.copy(defaultForm);
 					$scope.timeForm.$setUntouched();
 					$scope.timeForm.$setPristine();
-					return tempObj;
+					//return tempObj;
 				} else {
 					$scope.msgError = false;
 					$scope.msgSuccess = true;
 				}
 			};
 
+			//Ændres laug, ændres hvilke medlemmer der vises også
 			$scope.laugChanged = function () {
 				laugId = $scope.form.selectedProjectLaug.id;
 				$scope.getMembers();
@@ -93,7 +102,6 @@
 				$scope.form = angular.copy(defaultForm);
 				$scope.msgError = true;
 				$scope.msgSuccess = true;
-				console.log("empty");
 			};
 
 			$scope.downloadRegistrations = function () {
@@ -102,12 +110,18 @@
 						console.log(response);
 					});
 			}
-			$scope.formateDate = function(oldDate){
-				var y = oldDate.getFullYear();
-				var m = oldDate.getMonth()+1;
-				var d = oldDate.getDate();
-				console.log(y + '-' + m + '-' + d);
-				return y + '-' + m + '-' + d;
+			
+			//Formaterer javascript Date obj til string dato php forstår
+			ctrl.formateDate = function (oldDate) {
+				try {
+					var y = oldDate.getFullYear();
+					var m = oldDate.getMonth() + 1;
+					var d = oldDate.getDate();
+					return y + '-' + m + '-' + d;
+				} catch (err) {
+					//alert('Ugyldig dato');
+					throw 'not a valid date';
+				}
 			}
 		});
 })();

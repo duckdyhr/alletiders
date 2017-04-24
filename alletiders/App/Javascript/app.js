@@ -18,7 +18,8 @@
 			})
 			.when('/registration', {
 				templateUrl: 'app/views/registrationView.html',
-				controller: 'registrationController'
+				controller: 'registrationController',
+				controllerAs: 'registrationCtrl'
 			})
 
 			.otherwise({
