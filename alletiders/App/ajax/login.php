@@ -9,7 +9,7 @@
     $userId = $_GET['id'];
     $userPW = $_GET['pw'];
 //    $userId = 'johan@test.com';
-//    $userPW = 'johan';
+  //  $userPW = 'johan';
 
     $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -17,25 +17,30 @@
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
-
+		$resultArr = array();
     if($userId != "" && $userPW != ""){
-      echo "true!";
       $sql = "SELECT userId, userPW, memberId FROM Login WHERE userId='";
       $sql .= $userId;
       $sql .= "' AND userPW='";
       $sql .= $userPW;
       $sql .= "';";  
-      if($result = $conn->query($sql)) {
-        $resultArr = array();
+      
+			if($result = $conn->query($sql)) {
+        $userArr = array();
         while($rs = $result->fetch_array(MYSQLI_ASSOC)) {
-          $resultArr[]= array("id"=>utf8_encode($rs['userId']), "pw"=>utf8_encode($rs['userPW']), "memberID"=>utf8_encode($rs['memberId']));
+          $userArr[]= array("id"=>utf8_encode($rs['userId']), "pw"=>utf8_encode($rs['userPW']), "memberID"=>utf8_encode($rs['memberId']));
         }
-        echo json_encode($resultArr);
+				$resultArr['success'] = true;
+				$resultArr['user'] = $userArr;
       } else {
+				$resultArr['success'] = false;
+				$resultArr['errorMsg'] = "user not found";
       }
     } else {
-      echo "false";
+			$resultArr['success'] = false;
+			$resultArr['errorMsg'] = "userId and/or userPw not valid";
     }
-
-    $conn->close();
+		echo json_encode($resultArr);
+    
+		$conn->close();
 ?>

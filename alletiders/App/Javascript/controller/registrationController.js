@@ -39,7 +39,6 @@
 
 			//Sender ny registrering til database
 			$scope.processRegistration = function () {
-				//console.log(ctrl.prepareData());
 				$http({
 						method: 'POST',
 						url: 'app/ajax/sendRegistration.php',
@@ -48,9 +47,14 @@
 							'Content-Type': 'application/x-www-form-urlencoded'
 						}
 					})
-					.then(function (data) {
-						//console.log(data);
-						//og noget mere...
+					.then(function (response) {
+						if(response.data.success){
+							$scope.msgSuccess = false;
+							$scope.msgError = true;
+						}else{
+							$scope.msgError = false;
+							$scope.msgSuccess = true;
+						}
 					})
 			}
 
@@ -70,13 +74,9 @@
 			$scope.registerTime = function () {
 				if ($scope.timeForm.$valid) {
 					$scope.processRegistration();
-					$scope.msgSuccess = false;
-					$scope.msgError = true;
-					//var tempObj = $scope.form;
 					$scope.form = angular.copy(defaultForm);
 					$scope.timeForm.$setUntouched();
 					$scope.timeForm.$setPristine();
-					//return tempObj;
 				} else {
 					$scope.msgError = false;
 					$scope.msgSuccess = true;

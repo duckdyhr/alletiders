@@ -1,7 +1,6 @@
 'use strict';
 
 (function () {
-  console.log("loginController.js is loaded!");
   angular.module('login', [])
     .controller("loginController",
       function ($scope, $http, $location, userData, loginService) {
