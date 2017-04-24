@@ -4,6 +4,7 @@
 	angular.module('login')
 		.factory('loginService', ['$http', function ($http) {
 			var service = {};
+			
 			service.login = function (username, password, callback) {
 				$http.get("app/ajax/login.php?id=" + username + "&pw=" + password)
 					.then(function (response) {
@@ -21,6 +22,7 @@
 						}
 					});
 			};
+			
 			return service;
 	}])
 })();

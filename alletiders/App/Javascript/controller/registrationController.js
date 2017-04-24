@@ -2,84 +2,56 @@
 
 (function () {
 	angular.module('registration', [])
-		.controller('registrationController', function ($scope, $http, userData) {
+		.controller('registrationController', function ($scope, $http, userData, registrationService) {
 			var ctrl = this;
-		//Variabler som bruges til alert boksene's ng-hide attribut
-			$scope.msgSuccess = true;
-			$scope.msgError = true;
 
+			//Variabler som bruges til alert boksene's ng-hide attribut
+			$scope.hideMsgSuccess = true;
+			$scope.hideMsgError = true;
+			
 			$scope.author = userData.get();
-
+			$scope.hours = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
 			var laugId = 0;
 			
-			//Loader alle laug fra backend
-			$http.get("app/ajax/laug.php")
-				.then(function (response) {
-					$scope.laug = response.data;
-				});
+			registrationService.getAllLaug(function (data) {
+				$scope.laug = data;
+			});
 
-			$scope.hours = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
-
-			var defaultForm = {
+			ctrl.defaultForm = {
 				selectedProjectLaug: null,
 				selectedFrivillig: null,
 				selectedHours: $scope.hours[0],
-				date: new Date(),
+				date: new Date()
 			}
-
-			$scope.form = angular.copy(defaultForm);
 			
+			$scope.form = angular.copy(ctrl.defaultForm);
+		
 			//Loader alle frivillige knyttet til valgte laug
 			$scope.getMembers = function () {
-				$http.get("app/ajax/membersLaug.php?laugId=" + laugId)
-					.then(function (response) {
-						$scope.frivillige = response.data;
-					});
+				registrationService.getMembersInLaug(laugId, function (data) {
+					$scope.frivillige = data;
+				});
 			}
 
-			//Sender ny registrering til database
-			$scope.processRegistration = function () {
-				$http({
-						method: 'POST',
-						url: 'app/ajax/sendRegistration.php',
-						data: $.param(ctrl.prepareData()),
-						headers: {
-							'Content-Type': 'application/x-www-form-urlencoded'
-						}
-					})
-					.then(function (response) {
-						if(response.data.success){
-							$scope.msgSuccess = false;
-							$scope.msgError = true;
-						}else{
-							$scope.msgError = false;
-							$scope.msgSuccess = true;
-						}
-					})
-			}
-
-			//Formen bliver url/php venligt JS objekt
-			ctrl.prepareData = function () {
-				return {
-					laugId: $scope.form.selectedProjectLaug.id,
-					memberId: $scope.form.selectedFrivillig.id,
-					date: ctrl.formateDate($scope.form.date),
-					hours: $scope.form.selectedHours,
-					author: $scope.author.memberID
-				}
-			}
-			
-			//Validerer formen er gyldig før den sendes videre
-			//Feedback vha msgError og msgSuccess binding til alert boksene
+			/*Validerer formen er gyldig før den sendes videre
+			Feedback vha hideMsgError og hideMsgSuccess binding til alert boksene*/
 			$scope.registerTime = function () {
 				if ($scope.timeForm.$valid) {
-					$scope.processRegistration();
-					$scope.form = angular.copy(defaultForm);
+					registrationService.processRegistration(ctrl.prepareData(), function (response) {
+						if (response.success) {
+							$scope.hideMsgSuccess = false;
+							$scope.hideMsgError = true;
+						} else {
+							$scope.hideMsgError = false;
+							$scope.hideMsgSuccess = true;
+						}
+					});
+					$scope.form = angular.copy(ctrl.defaultForm);
 					$scope.timeForm.$setUntouched();
 					$scope.timeForm.$setPristine();
 				} else {
-					$scope.msgError = false;
-					$scope.msgSuccess = true;
+					$scope.hideMsgError = false;
+					$scope.hideMsgSuccess = true;
 				}
 			};
 
@@ -90,18 +62,18 @@
 			}
 
 			$scope.closeMsgError = function () {
-				$scope.msgError = true;
+				$scope.hideMsgError = true;
 			}
 
 			$scope.closeMsgSuccess = function () {
-				$scope.msgSuccess = true;
+				$scope.hideMsgSuccess = true;
 			}
 
 			$scope.cancel = function () {
 				$scope.timeForm.$setPristine();
-				$scope.form = angular.copy(defaultForm);
-				$scope.msgError = true;
-				$scope.msgSuccess = true;
+				$scope.form = angular.copy(ctrl.defaultForm);
+				$scope.hideMsgError = true;
+				$scope.hideMsgSuccess = true;
 			};
 
 			$scope.downloadRegistrations = function () {
@@ -111,7 +83,18 @@
 					});
 			}
 			
-			//Formaterer javascript Date obj til string dato php forstår
+			//Formen bliver url/php venligt JS objekt
+			ctrl.prepareData = function () {
+				return {
+					laugId: $scope.form.selectedProjectLaug.id,
+					memberId: $scope.form.selectedFrivillig.id,
+					date: ctrl.formateDate($scope.form.date),
+					hours: $scope.form.selectedHours,
+					author: $scope.author.memberID
+				}
+			}
+
+			/*Formaterer javascript Date obj til string dato php forstår yyyy-m-dd*/
 			ctrl.formateDate = function (oldDate) {
 				try {
 					var y = oldDate.getFullYear();

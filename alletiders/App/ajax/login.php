@@ -5,11 +5,11 @@
     $username = "joan";
     $password = "joan9999";
     $dbname = "joan";
-
-    $userId = $_GET['id'];
+    
+		$userId = $_GET['id'];
     $userPW = $_GET['pw'];
-//    $userId = 'johan@test.com';
-  //  $userPW = 'johan';
+  //  $userId = 'johan@test.com';
+   // $userPW = 'johan';
 
     $conn = new mysqli($servername, $username, $password, $dbname);
 

@@ -14,6 +14,7 @@
 </head>
 
 <body>
+
 	<div ng-controller="navbarController as navCtrl">
 		<nav class="navbar navbar-default">
 			<div class="container-fluid">
@@ -50,7 +51,7 @@
 	<ng-view></ng-view>
 
 	<!--
-	Kan ikke bruge devices' kamera over http
+	Kan ikke bruge devices' kamera over http protokollen
 	<div class="container" ng-controller="qrController">
 		<qr-scanner ng-success="onSuccess(data)" width="400" height="300"></qr-scanner>
 	</div>-->
@@ -70,6 +71,7 @@
 	<script src="app/javascript/controller/qrController.js"></script>
 	<script src="app/javascript/services/loginService.js"></script>
 	<script src="app/javascript/services/userData.js"></script>
+	<script src="app/javascript/services/registrationService.js"></script>
 </body>
 
 </html>

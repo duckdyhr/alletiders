@@ -3,6 +3,7 @@
 (function () {
 	var app = angular.module('app', ['login', 'registration', 'ngRoute']);
 	
+	/*Directive for login. Directive <login> is used both in navbar and on login location*/
 	app.directive('login', function(){
 		return {
 			templateUrl: 'app/views/navLoginView.html',
@@ -10,23 +11,23 @@
 		}
 	});
 	
+	/*Routing*/
 	app.config(function ($routeProvider) {
 		$routeProvider
 			.when('/login', {
-				templateUrl: 'app/views/loginView.html',
-				//controller: 'loginController'
+				templateUrl: 'app/views/loginView.html'
 			})
 			.when('/registration', {
 				templateUrl: 'app/views/registrationView.html',
 				controller: 'registrationController',
 				controllerAs: 'registrationCtrl'
 			})
-
 			.otherwise({
 				redirectTo: '/login'
 			});
 	}).$inject = ['$routeProvider'];
 
+	/*Make sure unauthorized user can't reach locations that demand being logged in*/
 	app.run(['$rootScope', '$location', 'userData',
 		function ($rootScope, $location, userData) {
 			$rootScope.$on('$locationChangeStart', function (event, next, current) {
