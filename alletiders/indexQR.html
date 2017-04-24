@@ -1,0 +1,62 @@
+<!doctype html>
+<html ng-app="app">
+
+<head>
+	<title>AlleTiders QR login</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="app/libraries/bootstrap/css/bootstrap.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Acme|Lato">
+	<link rel="stylesheet" type="text/css" href="app/stylesheets/css/index.css">
+	<link rel="stylesheet" type="text/css" href="app/stylesheets/css/loginView.css">
+	<link rel="stylesheet" type="text/css" href="app/stylesheets/css/registrationView.css">
+</head>
+
+<body>
+	<div class="container">
+		<h1>
+			AlleTiders
+			<br>
+			<small class="subtitle">Login nedenfor</small>
+		</h1>
+	</div>
+
+	<div ng-controller="qrController as qrCtrl" class="container">
+		<qr-scanner width="300" height="300" ng-success="onSuccess(data)" ng-error="onError(error)" />
+		<div ng-hide="qrCtrl.hideSuccess" class="alert alert-success fade in">
+      <a ng-click="closeMsgSuccess()" class="close" aria-label="close">&times;</a> {{qrCtrl.qrText}}
+    </div>
+	</div>
+	<script src="app/libraries/jquery/jquery-3.2.0.js"></script>
+	<script src="app/libraries/bootstrap/js/bootstrap.js"></script>
+	<script src="app/libraries/angular/angular.js"></script>
+	<script src="app/libraries/angular-route/angular-route.js"></script>
+	<script src="app/libraries/angular-qr-scanner/qr-scanner.js"></script>
+	<script src="app/libraries/angular-qr-scanner/src/jsqrcode-combined.min.js"></script>
+
+	<script>
+		var app = angular.module('app', ['qrScanner']);
+
+		app.controller('qrController', ['$scope', function($scope) {
+			var ctrl = this;
+			ctrl.qrText = "";
+			ctrl.hideSuccess = true;
+			ctrl.closeMsgSuccess = function(){
+				ctrl.hideSuccess = true;
+			}
+			$scope.onSuccess = function(data) {
+				ctrl.qrText = data + " er registeret!";
+				ctrl.hideSuccess = false;
+				console.log(data);
+			}
+			/*$scope.onError = function(error) {
+				console.log(error);
+			}*/
+			$scope.onVideoError = function(error) {
+				console.log(error);
+			}
+		}]);
+	</script>
+</body>
+
+</html>

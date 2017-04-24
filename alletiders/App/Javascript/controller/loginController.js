@@ -9,6 +9,7 @@
         $scope.email = "";
         $scope.password = "";
         $scope.msgLoginErr = true;
+				
         $scope.login = function () {
           loginService.login($scope.email, $scope.password, function (response) {
             if (response.success) {

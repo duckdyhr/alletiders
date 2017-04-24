@@ -1,9 +1,10 @@
-console.log("logoutTesting...");
+"use strict";
 
-describe('logoutController', function(){
+xdescribe('logoutController', function(){
 	beforeEach(module('app'));
 	
-	it('should clear logged in user', function(){
+	//Tester userData.clear() metoden i userDataTest
+	it('should clear user in userData service', function(){
 		expect('foo').toEqual('foo');
 	});
 });
