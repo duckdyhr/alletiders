@@ -18,7 +18,7 @@ module.exports = function (config) {
       'app/libraries/angular-route/angular-route.js',
       'app/javascript/app.js',
       'app/javascript/controller/*.js',
-			'app/javascript/services/*.js',
+      'app/javascript/services/*.js',
       'tests/*.js'
     ],
 
