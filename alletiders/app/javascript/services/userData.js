@@ -18,6 +18,9 @@
 			}
 
 			function isSet() {
+				if(user == undefined){
+					return false;
+				}
 				return !((user.id==undefined) || (user.pw==undefined));
 			}
 			return {
