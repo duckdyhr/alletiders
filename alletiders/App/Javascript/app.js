@@ -35,7 +35,7 @@
 		function ($rootScope, $location, userData) {
       $rootScope.$on('$locationChangeStart', function (event, next, current) {
         $('#myNavbar').collapse('hide');
-        if (!current.endsWith('/test/')) {
+        if (!current.endsWith('students.dk/')) {
           if ($location.path() !== '/login' && !userData.isSet()) {
             alert("Du er ikke logget ind");
             $location.path('/login');
