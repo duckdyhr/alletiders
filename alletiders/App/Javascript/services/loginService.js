@@ -12,19 +12,21 @@
       service.login = function (username, password, callback) {
         $http.get("app/ajax/login.php?id=" + username + "&pw=" + password)
           .then(function (response) {
-            if (response.data.length > 0) {
-              var user = response.data[0];
+            if (response.data.success) {
+              var user = response.data.user[0];
               callback({
                 success: true,
                 user: user
               });
             } else {
               callback({
-                success: false
+                success: false,
+                error: response.data.errorMsg
               });
             }
           });
       };
+
       return service;
 	}])
 })();
