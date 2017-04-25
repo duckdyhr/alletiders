@@ -3,12 +3,13 @@
 describe('userData', function () {
 
 	var userData;
-	//objekter til at teste
+
+    //Objects for testing
 	var valid = {id: 'anne@test.com', pw:'johan'};
 	var empty = {};
 	var invalid = {id: 'anne'};
 	
-	//OBS! app og inject skal være i hver sin beforeEach()
+    //Note: module() and inject() must be in separate beforeEach() functions
 	beforeEach(function () {
 		module('app');
 	});

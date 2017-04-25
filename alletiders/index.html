@@ -9,8 +9,6 @@
 	<link rel="stylesheet" type="text/css" href="app/libraries/bootstrap/css/bootstrap.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Acme|Lato">
 	<link rel="stylesheet" type="text/css" href="app/stylesheets/css/index.css">
-	<link rel="stylesheet" type="text/css" href="app/stylesheets/css/loginView.css">
-	<link rel="stylesheet" type="text/css" href="app/stylesheets/css/registrationView.css">
 </head>
 
 <body>
@@ -50,7 +48,7 @@
 	<ng-view></ng-view>
 
 	<!--
-	Kan ikke bruge devices' kamera over http
+    Cannot use device camera with http; needs https.
 	<div class="container" ng-controller="qrController">
 		<qr-scanner ng-success="onSuccess(data)" width="400" height="300"></qr-scanner>
 	</div>-->
@@ -59,15 +57,17 @@
 	<script src="app/libraries/bootstrap/js/bootstrap.js"></script>
 	<script src="app/libraries/angular/angular.js"></script>
 	<script src="app/libraries/angular-route/angular-route.js"></script>
+<!--
 	<script src="app/libraries/angular-qr-scanner/qr-scanner.js"></script>
 	<script src="app/libraries/angular-qr-scanner/src/jsqrcode-combined.min.js"></script>
+-->
 
 	<script src="app/javascript/app.js"></script>
 	<script src="app/javascript/controller/loginController.js"></script>
 	<script src="app/javascript/controller/logoutController.js"></script>
 	<script src="app/javascript/controller/registrationController.js"></script>
 	<script src="app/javascript/controller/navbarController.js"></script>
-	<script src="app/javascript/controller/qrController.js"></script>
+<!--	<script src="app/javascript/controller/qrController.js"></script>-->
 	<script src="app/javascript/services/loginService.js"></script>
 	<script src="app/javascript/services/userData.js"></script>
 </body>

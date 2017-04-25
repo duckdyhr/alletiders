@@ -1,12 +1,12 @@
 <div>
   <div class="container">
     <h2>
-      Timeregistrering
+      Dokumentation
       <br>
-      <small class="subtitle">Registrér timer for en frivillig:</small>
+      <small class="subtitle">Send timer for en frivillig:</small>
     </h2>
     <div ng-hide="msgSuccess" class="alert alert-success fade in">
-      <a ng-click="closeMsgSuccess()" class="close" aria-label="close">&times;</a> Timeregistrering fuldført!
+      <a ng-click="closeMsgSuccess()" class="close" aria-label="close">&times;</a> Indsendelse fuldført!
     </div>
     <div ng-hide="msgError" class="alert alert-danger fade in">
       <a ng-click="closeMsgError()" class="close" aria-label="close">&times;</a> Ikke alle felter er udfyldte!
@@ -31,13 +31,13 @@
         <input type="date" name="date" class="form-control" ng-model="form.date" placeholder="dd-MM-yyyy" required>
       </div>
       <div class="form-group">
-        <label class="label" for="author">Registreret af:</label>
+        <label class="label" for="author">Sendt af:</label>
         <input id="authorInput" name="author" type="text" class="form-control" value="{{author.id}}" disabled required>
       </div>
-      <button type="submit" id="btnRegister" class="btn btn-info">Send registrering</button>
+      <button type="submit" id="btnRegister" class="btn btn-info">Send</button>
       <button type="button" class="btn btn-info" ng-click="cancel()">Start forfra</button>
 <!--      <button type="button" class="btn btn-info" ng-click="downloadRegistrations()">Download timeregistreringsdata som CSV</button>-->
     </form>
-      <a href="app/download/registreringer.csv" class="btn btn-info" download target="_blank">Download timeregistreringsdata som CSV</a>
+      <a href="app/download/registreringer.csv" class="btn btn-info" download target="_blank">Download data over frivillige timer som CSV</a>
   </div>
 </div>

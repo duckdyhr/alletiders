@@ -9,7 +9,7 @@ describe('login http test', function () {
 			$http.get("app/ajax/login.php?id=" + username + "&pw=" + password)
 				.then(function (response) {
 					$scope.data = response.data;
-					console.log($scope.data);
+//					console.log($scope.data);
 				});
 		}
 

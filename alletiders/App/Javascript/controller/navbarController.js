@@ -3,7 +3,8 @@
 (function () {
 	angular.module('app')
 		.controller('navbarController', function (userData) {
-			console.log("navbarController loaded!");
+      
+            //Function for hiding the navbar login/logout elements
 			this.hideLogin = function(){
 				return userData.isSet();
 			}

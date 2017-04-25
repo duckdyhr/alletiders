@@ -1,3 +1,5 @@
+
+/* ---------- GENERAL BACKGROUND & TEXT  ---------- */
 body {
   background-color: #F2F2F2;
   border: 2px;
@@ -14,6 +16,7 @@ h2 {
   color: #C28833;
 }
 
+/* --------------- NAVBAR  --------------- */
 .navbar-default {
   background-color: #4A4641;
   font-size: 13px;
@@ -38,6 +41,7 @@ h2 {
   background-color: #C28833;
 }
 
+/* --------------- BUTTONS  --------------- */
 .btn {
   margin-bottom: 4px;
   background-color: #D7AE70;
@@ -49,4 +53,18 @@ h2 {
 .btn:hover {
   background-color: #C5892F;
   border-color: #C88817;
+}
+
+/* --------------- FORM FIELDS & LABELS  --------------- */
+.ng-invalid.ng-dirty{
+    border-color: #FA787E;
+}
+
+.ng-valid.ng-dirty{
+    border-color: #78FA89;
+}
+
+.label {
+  color: #333;
+  font-size: 15px;
 }

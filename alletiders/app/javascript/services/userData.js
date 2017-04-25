@@ -1,5 +1,5 @@
 'use strict';
-//'Modellen'. ~CRUD user.
+//'Model'. ~CRUD user.
 (function () {
 	angular.module('app')
 		.factory('userData', [function () {
@@ -19,7 +19,6 @@
 
 			function isSet() {
 				return !((user.id==undefined) || (user.pw==undefined));
-				//return !isEmpty(user);
 			}
 			return {
 				set: set,

@@ -32,7 +32,7 @@ describe('registrationController', function () {
 		result = controller.formateDate(validDate);
 		expect(result).toBeDefined();
 		expect(result).toEqual('2017-4-20');
-		//expect(controller.formateDate(notDateObj)).toThrow('not a valid date');
+//		expect(controller.formateDate(notDateObj)).toThrow('not a valid date');
 	});
 
 	xit('checks laug list', function () {

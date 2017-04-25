@@ -4,7 +4,8 @@
 	angular.module('registration', [])
 		.controller('registrationController', function ($scope, $http, userData) {
 			var ctrl = this;
-		//Variabler som bruges til alert boksene's ng-hide attribut
+      
+            //Variables used for the alert-message boxes' ng-hide attribute
 			$scope.msgSuccess = true;
 			$scope.msgError = true;
 
@@ -12,7 +13,7 @@
 
 			var laugId = 0;
 			
-			//Loader alle laug fra backend
+            //Loads all laug/projects from backend
 			$http.get("app/ajax/laug.php")
 				.then(function (response) {
 					$scope.laug = response.data;
@@ -29,7 +30,8 @@
 
 			$scope.form = angular.copy(defaultForm);
 			
-			//Loader alle frivillige knyttet til valgte laug
+            /*Loads all 'frivillige' based on selected laug/project.
+            */
 			$scope.getMembers = function () {
 				$http.get("app/ajax/membersLaug.php?laugId=" + laugId)
 					.then(function (response) {
@@ -37,9 +39,8 @@
 					});
 			}
 
-			//Sender ny registrering til database
+            //Sends new registration to the database through the php-file
 			$scope.processRegistration = function () {
-				//console.log(ctrl.prepareData());
 				$http({
 						method: 'POST',
 						url: 'app/ajax/sendRegistration.php',
@@ -49,12 +50,13 @@
 						}
 					})
 					.then(function (data) {
-						//console.log(data);
-						//og noget mere...
+						//and something else...
 					})
 			}
 
-			//Formen bliver url/php venligt JS objekt
+            /* Function for making the form into a url-/php-friendly JS object.
+            Prepares it before it is sent.
+            */
 			ctrl.prepareData = function () {
 				return {
 					laugId: $scope.form.selectedProjectLaug.id,
@@ -65,8 +67,9 @@
 				}
 			}
 			
-			//Validerer formen er gyldig før den sendes videre
-			//Feedback vha msgError og msgSuccess binding til alert boksene
+            /*Function for validating the form before it is sent.
+            Feedback through 'msgError' or 'msgSuccess' binding for the alert boxes.
+            */
 			$scope.registerTime = function () {
 				if ($scope.timeForm.$valid) {
 					$scope.processRegistration();
@@ -83,20 +86,23 @@
 				}
 			};
 
-			//Ændres laug, ændres hvilke medlemmer der vises også
+            //Change listener on the input field 'selectedProjectLaug'.
 			$scope.laugChanged = function () {
 				laugId = $scope.form.selectedProjectLaug.id;
 				$scope.getMembers();
 			}
 
+            //Hides the error-message box by setting the value bound to ng-hide to true.
 			$scope.closeMsgError = function () {
 				$scope.msgError = true;
 			}
 
+            //Hides the success-message box by setting the value bound to ng-hide to true.
 			$scope.closeMsgSuccess = function () {
 				$scope.msgSuccess = true;
 			}
 
+            //Clears all form fields, hides all message boxes and sets the form to pristine state.
 			$scope.cancel = function () {
 				$scope.timeForm.$setPristine();
 				$scope.form = angular.copy(defaultForm);
@@ -104,6 +110,7 @@
 				$scope.msgSuccess = true;
 			};
 
+            //Runs the csv-handling.php file and returns the file for client download.
 			$scope.downloadRegistrations = function () {
 				$http.get("app/ajax/csv-handling.php")
 					.then(function (response) {
@@ -111,7 +118,7 @@
 					});
 			}
 			
-			//Formaterer javascript Date obj til string dato php forstår
+            //Formats javascript Date object to string-date, so the php-file will understand.
 			ctrl.formateDate = function (oldDate) {
 				try {
 					var y = oldDate.getFullYear();
