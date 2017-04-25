@@ -30,16 +30,16 @@
         while($rs = $result->fetch_array(MYSQLI_ASSOC)) {
           $userArr[]= array("id"=>utf8_encode($rs['userId']), "pw"=>utf8_encode($rs['userPW']), "memberID"=>utf8_encode($rs['memberId']));
         }
-				if(count($resultArr)==0){
-					$resultArr['success'] = false;
-					$resultArr['errorMsg'] = "user not found";
-				}else{
+				if(count($userArr)>0){
 					$resultArr['success'] = true;
 					$resultArr['user'] = $userArr;
+				}else{
+					$resultArr['success'] = false;
+					$resultArr['errorMsg'] = "no such user found";
 				}
       } else {
 				$resultArr['success'] = false;
-				$resultArr['errorMsg'] = "user not found";
+				$resultArr['errorMsg'] = "query not a sucees, user not found";
       }
     } else {
 			$resultArr['success'] = false;

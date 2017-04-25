@@ -14,7 +14,6 @@
           .then(function (response) {
             if (response.data.success) {
               var user = response.data.user[0];
-							console.log(response);
               callback({
                 success: true,
                 user: user
