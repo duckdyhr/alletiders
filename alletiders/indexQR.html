@@ -22,7 +22,7 @@
 	</div>
 
 	<div ng-controller="qrController as qrCtrl" class="container">
-		<qr-scanner width="300" height="300" ng-success="onSuccess(data)" ng-error="onError(error)" />
+		<qr-scanner width="250" height="250" ng-success="onSuccess(data)" ng-error="onError(error)" />
 		<div ng-hide="qrCtrl.hideSuccess" class="alert alert-success fade in">
       <a ng-click="closeMsgSuccess()" class="close" aria-label="close">&times;</a> {{qrCtrl.qrText}}
     </div>
