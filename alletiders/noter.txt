@@ -16,3 +16,7 @@ app.controller("testLoginController", function($scope, $http){
         $scope.testLogins = response.data.records;
    });
 });
+
+SELECT Laug.name, Laug.id FROM Laug
+	LEFT JOIN Member_Laug ON Laug.id=Member_Laug.laugId
+    WHERE Member_Laug.memberId=1

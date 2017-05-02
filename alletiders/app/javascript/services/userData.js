@@ -16,18 +16,23 @@
 			function clear() {
 				user = {};
 			}
+			
+			function isCustodian(){
+				return user.isCustodian;
+			}
 
 			function isSet() {
 				if(user == undefined){
 					return false;
 				}
-				return !((user.id==undefined) || (user.pw==undefined));
+				return !((user.id==undefined) || (user.memberID==undefined));
 			}
 			return {
 				set: set,
 				get: get,
 				clear: clear,
-				isSet: isSet
+				isSet: isSet,
+				isCustodian: isCustodian
 			}
 		}]);
 })();

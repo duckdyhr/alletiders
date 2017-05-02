@@ -6,10 +6,10 @@
     $password = "joan9999";
     $dbname = "joan";
     
-		//$userId = $_GET['id'];
-    //$userPW = $_GET['pw'];
-    $userId = 'johan@test.com';
-    $userPW = 'johan';
+		$userId = $_GET['id'];
+    $userPW = $_GET['pw'];
+    //$userId = 'johan@test.com';
+    //$userPW = 'johan';
 
     $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -25,8 +25,10 @@
 		
 		$resultArr = array();
     if($userId != "" && $userPW != ""){
-      $sql = "SELECT Login.userId, Login.userPW, memberId, Member.isCustodian FROM Login";
-			$sql .= "LEFT JOIN Member ON Login.memberId=Member.id";
+      $sql = "SELECT Login.userId, Login.memberId, ";
+			$sql .= "Member.firstname, Member.middlename, Member.lastname, Member.isCustodian ";
+			$sql .= "FROM Login ";
+			$sql .= "LEFT JOIN Member ON Login.memberId=Member.id ";
 			$sql .= "WHERE userId='";
       $sql .= $userId;
       $sql .= "' AND userPW='";
@@ -37,8 +39,9 @@
         $userArr = array();
         while($rs = $result->fetch_array(MYSQLI_ASSOC)) {
           $userArr[]= array("id"=>utf8_encode($rs['userId']), 
-														"pw"=>utf8_encode($rs['userPW']), "memberID"=>utf8_encode($rs['memberId']),
-													 	"isCustodian"=>utf8_encode($rs['isCustodian']));
+														"memberID"=>utf8_encode($rs['memberId']),
+													 	"isCustodian"=>utf8_encode($rs['isCustodian']),
+													 "name"=>utf8_encode($rs['firstname'] . " " . $rs['middlename'] . " " . $rs['lastname']));
         }
 				if(count($userArr)>0){
 					$resultArr['success'] = true;

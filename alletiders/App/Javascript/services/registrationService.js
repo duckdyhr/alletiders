@@ -35,6 +35,15 @@
 					});
 			}
 
+			/*Loads all laug connected to a member from database*/
+			service.getLaugByMember = function (memberId, callback) {
+				$http.get("app/ajax/laugByMember.php?id=" + memberId)
+					.then(function (response) {
+					console.log(response);
+						callback(response.data);
+					});
+			}
+
 			/*Loads members of a given laug*/
 			service.getMembersInLaug = function (laugId, callback) {
 				$http.get("app/ajax/membersLaug.php?laugId=" + laugId)
