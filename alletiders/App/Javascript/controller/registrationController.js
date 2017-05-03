@@ -21,12 +21,16 @@
 				registrationService.getAllLaug(
 					function (data) {
 						$scope.laug = data;
+						$("#selectFrivillige").show();
+						$("#textFrivillig").hide();
 					});
 			} else {
 				registrationService.getLaugByMember(userData.get().memberID,
 					function (data) {
 						$scope.laug = data;
 						$scope.frivillige = [userData.get()];
+						$("#selectFrivillige").hide();
+						$("#textFrivillig").show();
 					});
 			}
 

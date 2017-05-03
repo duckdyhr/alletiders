@@ -8,7 +8,8 @@
 	<meta name="viewport" content="initial-scale=1.0">
 	<link rel="stylesheet" type="text/css" href="app/libraries/bootstrap/css/bootstrap.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Acme|Lato">
-	<link rel="stylesheet" type="text/css" href="app/stylesheets/css/index.css">
+<!--	<link rel="stylesheet" type="text/css" href="app/stylesheets/css/index.css">-->
+	<link rel="stylesheet" type="text/css" href="app/libraries/bootstrap/css/custom.css">
 </head>
 
 <body>
