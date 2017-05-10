@@ -5,7 +5,7 @@ describe('userData', function () {
 	var userData;
 
     //Objects for testing
-	var valid = {id: 'anne@test.com', pw:'johan'};
+	var valid = {id: 'anne@test.com', pw:'johan', isCustodian: false, memberID:1};
 	var empty = {};
 	var invalid = {id: 'anne'};
 	

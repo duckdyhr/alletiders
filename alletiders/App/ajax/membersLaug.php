@@ -22,7 +22,6 @@
       $resultArr = array();
       while($rs = $result->fetch_array(MYSQLI_ASSOC)) {
           $name = utf8_encode($rs['firstname'] . " " . $rs['middlename'] . " " . $rs['lastname']);
-          //$resultArr[]= array("name"=> utf8_encode($rs['firstname']));
           $resultArr[]= array("name"=> $name, "id"=> $rs['id']);
       }
       

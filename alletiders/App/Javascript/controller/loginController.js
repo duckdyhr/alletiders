@@ -16,11 +16,7 @@
         $scope.login = function () {
           loginService.login($scope.email, $scope.password, function (response) {
             if (response.success) {
-							console.log(response);
               userData.set(response.user);
-							console.log(userData.get());
-							console.log(userData.isSet());
-							//setTimeout(function(){$location.path('/registration')}, 3000);
               $location.path('/registration');
             } else {
               $scope.msgLoginErr = false;

@@ -18,9 +18,9 @@
 
   $outp = "";
   while($rs = $result->fetch_array(MYSQL_ASSOC)) {
-    $outp = $rs["firstname"] . ',';
-    $outp .= $rs["lastname"] . ',';
-    $outp .= $rs["name"] . ',';
+    $outp = utf8_encode($rs["firstname"]) . ',';
+    $outp .= utf8_encode($rs["lastname"]) . ',';
+    $outp .= utf8_encode($rs["name"]) . ',';
     $outp .= $rs["hours"] . ',';
     $outp .= $rs["date"] . '';
     
@@ -55,5 +55,4 @@
   } else {
     echo 'File missing!';
   }
-
 ?>

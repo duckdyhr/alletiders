@@ -23,6 +23,7 @@
 						$scope.laug = data;
 						$("#selectFrivillige").show();
 						$("#textFrivillig").hide();
+						$("#csvPanel").show();
 					});
 			} else {
 				registrationService.getLaugByMember(userData.get().memberID,
@@ -31,6 +32,7 @@
 						$scope.frivillige = [userData.get()];
 						$("#selectFrivillige").hide();
 						$("#textFrivillig").show();
+						$("#csvPanel").hide();
 					});
 			}
 
@@ -76,7 +78,6 @@
 			$scope.getMembers = function () {
 				if (userData.isCustodian()) {
 					registrationService.getMembersInLaug(laugId, function (data) {
-						console.log(data);
 						$scope.frivillige = data;
 					});
 				} else {
