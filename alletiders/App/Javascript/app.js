@@ -1,7 +1,7 @@
 'use strict';
 
 (function () {
-	var app = angular.module('app', ['login', 'registration', 'ngRoute']);
+	var app = angular.module('app', ['login', 'registration', 'statistics', 'ngRoute']);
 
 	/*Directive for login. Directive <login> is used both in navbar and on login location*/
 	app.directive('login', function () {
@@ -22,6 +22,11 @@
 				controller: 'registrationController',
 				controllerAs: 'registrationCtrl'
 			})
+			.when('/statistics', {
+				templateUrl: 'app/views/statisticsView.html',
+				controller: 'statisticsController',
+				controllerAs: 'statsCtrl'
+			})
 			.otherwise({
 				redirectTo: '/login'
 			});
@@ -35,7 +40,7 @@
 		function ($rootScope, $location, userData) {
 			$rootScope.$on('$locationChangeStart', function (event, next, current) {
 				$('#myNavbar').collapse('hide');
-				if (next.endsWith('/registration') && !userData.isSet()) {
+				if (!userData.isSet() && (next.endsWith('/registration') || next.endsWith('/statistics'))) {
 					alert("Du er ikke logget ind");
 					$location.path('/login');
 				}

@@ -39,7 +39,7 @@
 			service.getLaugByMember = function (memberId, callback) {
 				$http.get("app/ajax/laugByMember.php?id=" + memberId)
 					.then(function (response) {
-					console.log(response);
+						//console.log(response);
 						callback(response.data);
 					});
 			}

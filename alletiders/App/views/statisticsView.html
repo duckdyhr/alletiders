@@ -1,0 +1,31 @@
+<div>
+	<div class="container">
+		<h1>Statistik</h1>
+		<!--		{{statsCtrl.test}}-->
+		<!-- Styling: Bootstrap Behavior: Datatable-->
+		<div class="table-responsive">
+			<table class="table table-hover">
+				<th>
+					<tr>
+						<th>Tema</th>
+						<th>Laug</th>
+						<th>Frivillig</th>
+						<th>Kustode</th>
+						<th>Dato</th>
+						<th>Timer</th>
+					</tr>
+				</th>
+				<tbody>
+					<tr ng-repeat="row in statsCtrl.data">
+						<td>{{row.theme}}</td>
+						<td>{{row.laug}}</td>
+						<td>{{row.name}}</td>
+						<td>{{row.isCustodian}}</td>
+						<td>{{row.date}}</td>
+						<td>{{row.hours}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

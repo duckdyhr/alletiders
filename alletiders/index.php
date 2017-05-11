@@ -9,6 +9,7 @@
 	<link rel="stylesheet" type="text/css" href="app/libraries/bootstrap/css/bootstrap.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Acme|Lato">
 	<link rel="stylesheet" type="text/css" href="app/stylesheets/css/index.css">
+	<link rel="stylesheet" type="text/css" href="app/libraries/datatables.net-dt/css/jquery.dataTables.css">
 </head>
 
 <body>
@@ -27,13 +28,19 @@
 				<div class="collapse navbar-collapse" id="myNavbar">
 					<div class="container">
 						<ul class="nav navbar-nav navbar-right">
-							<div ng-controller="logoutController as logoutCtrl">
-								<li ng-hide="!navCtrl.hideLogin()"><span class="glyphicon glyphicon-log-out"></span><a ng-click="logoutCtrl.logout()"> Logout</a></li>
+							<div>
+								<li>
+									<a ng-click="navCtrl.goToStatistics()"> Statistik</a>
+								</li>
 							</div>
-							<li class="divider"></li>
+							<div ng-controller="logoutController as logoutCtrl">
+								<li ng-hide="!navCtrl.hideLogin()">
+									<a ng-click="logoutCtrl.logout()"> Logout</a>
+								</li>
+							</div>
 							<div>
 								<li ng-hide="navCtrl.hideLogin()">
-									<a data-toggle="collapse" data-target="#navLoginPanel"><span class="glyphicon glyphicon-log-in"></span> Login</a>
+									<a data-toggle="collapse" data-target="#navLoginPanel"> Login</a>
 									<div id="navLoginPanel" class="collapse">
 										<login></login>
 									</div>
@@ -45,7 +52,7 @@
 			</div>
 		</nav>
 	</div>
-	
+
 	<ng-view></ng-view>
 
 	<!--
@@ -62,7 +69,9 @@
 	<script src="app/libraries/bootstrap/js/bootstrap.js"></script>
 	<script src="app/libraries/angular/angular.js"></script>
 	<script src="app/libraries/angular-route/angular-route.js"></script>
-<!--
+	<script src="app/libraries/datatables.net/js/jquery.dataTables.js"></script>
+	
+	<!--
 	<script src="app/libraries/angular-qr-scanner/qr-scanner.js"></script>
 	<script src="app/libraries/angular-qr-scanner/src/jsqrcode-combined.min.js"></script>
 -->
@@ -72,10 +81,12 @@
 	<script src="app/javascript/controller/logoutController.js"></script>
 	<script src="app/javascript/controller/registrationController.js"></script>
 	<script src="app/javascript/controller/navbarController.js"></script>
-<!--	<script src="app/javascript/controller/qrController.js"></script>-->
+	<script src="app/javascript/controller/statisticsController.js"></script>
+	<!--	<script src="app/javascript/controller/qrController.js"></script>-->
 	<script src="app/javascript/services/loginService.js"></script>
 	<script src="app/javascript/services/userData.js"></script>
 	<script src="app/javascript/services/registrationService.js"></script>
+	<script src="app/javascript/services/statisticsService.js"></script>
 </body>
 
 </html>

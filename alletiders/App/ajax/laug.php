@@ -17,7 +17,7 @@
     if($result = $conn->query($sql)){
         $resultArr = array();
         while($rs = $result->fetch_array(MYSQLI_ASSOC)) {
-          $resultArr[]= array("name"=> utf8_encode($rs['name']), "id"=> $rs['id']); 
+          $resultArr[]= array("name"=> utf8_encode($rs['name']), "id"=> $rs['id']);
         }
         
         //var_dump($resultArr);
