@@ -10,19 +10,26 @@
 			$scope.hideMsgError = true;
 
 			$scope.author = userData.get();
-			$scope.hours = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
-			var laugId = 0;
-
-			$scope.hours = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
 			
+			var laugId = 0;
+			$scope.frivillige = [];
+			$scope.hours = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+
+			ctrl.defaultForm = {
+				selectedProjectLaug: null,
+				selectedFrivillig: null,
+				selectedHours: $scope.hours[0],
+				date: new Date()
+			}
+			
+			$scope.form = angular.copy(ctrl.defaultForm);
+
 			/*Load different controls based on isCostudian*/
 			if (userData.isCustodian()) {
 				//Loads all laug/projects from backend
 				registrationService.getAllLaug(
 					function (data) {
 						$scope.laug = data;
-						$("#selectFrivillige").show();
-						$("#textFrivillig").hide();
 						$("#csvPanel").show();
 					});
 			} else {
@@ -30,17 +37,9 @@
 					function (data) {
 						$scope.laug = data;
 						$scope.frivillige = [userData.get()];
-						$("#selectFrivillige").hide();
-						$("#textFrivillig").show();
+						$scope.form.selectedFrivillig = userData.get();
 						$("#csvPanel").hide();
 					});
-			}
-
-			ctrl.defaultForm = {
-				selectedProjectLaug: null,
-				selectedFrivillig: null,
-				selectedHours: $scope.hours[0],
-				date: new Date()
 			}
 
 			//Sends new registration to the database through the php-file
@@ -64,14 +63,12 @@
 			ctrl.prepareData = function () {
 				return {
 					laugId: $scope.form.selectedProjectLaug.id,
-					memberId: $scope.form.selectedFrivillig.id,
+					memberId: $scope.form.selectedFrivillig.memberID,
 					date: ctrl.formateDate($scope.form.date),
 					hours: $scope.form.selectedHours,
 					author: $scope.author.memberID
 				}
 			}
-
-			$scope.form = angular.copy(ctrl.defaultForm);
 
 			/*Loads all 'frivillige' based on selected laug/project.
 			 */
@@ -82,6 +79,7 @@
 					});
 				} else {
 					$scope.frivillige = [userData.get()];
+					$scope.form.selectedFrivillig = userData.get();
 				}
 			}
 
@@ -89,8 +87,13 @@
 			Feedback through 'msgError' or 'msgSuccess' binding for the alert boxes.
 			*/
 			$scope.registerTime = function () {
+				console.log($scope.frivillige);
+				console.log($scope.form.selectedFrivillig);
+				console.log(ctrl.prepareData());
+				
 				if ($scope.timeForm.$valid) {
 					registrationService.processRegistration(ctrl.prepareData(), function (response) {
+						console.log(response);
 						if (response.success) {
 							$scope.hideMsgSuccess = false;
 							$scope.hideMsgError = true;

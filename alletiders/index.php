@@ -9,7 +9,6 @@
 	<link rel="stylesheet" type="text/css" href="app/libraries/bootstrap/css/bootstrap.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Acme|Lato">
 	<link rel="stylesheet" type="text/css" href="app/stylesheets/css/index.css">
-	<link rel="stylesheet" type="text/css" href="app/libraries/datatables.net-dt/css/jquery.dataTables.css">
 </head>
 
 <body>
@@ -17,6 +16,7 @@
 	<div ng-controller="navbarController as navCtrl">
 		<nav class="navbar navbar-default">
 			<div class="container-fluid">
+				
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
          		<span class="icon-bar"></span>
@@ -25,29 +25,29 @@
         		</button>
 					<a class="navbar-brand" href="#">AlleTiders</a>
 				</div>
+				
 				<div class="collapse navbar-collapse" id="myNavbar">
-					<div class="container">
+<!--					<div class="container">-->
 						<ul class="nav navbar-nav navbar-right">
-							<div>
-								<li>
-									<a ng-click="navCtrl.goToStatistics()"> Statistik</a>
-								</li>
-							</div>
-							<div ng-controller="logoutController as logoutCtrl">
-								<li ng-hide="!navCtrl.hideLogin()">
-									<a ng-click="logoutCtrl.logout()"> Logout</a>
-								</li>
-							</div>
-							<div>
-								<li ng-hide="navCtrl.hideLogin()">
-									<a data-toggle="collapse" data-target="#navLoginPanel"> Login</a>
+							<li ng-hide="!navCtrl.isCustodian()">
+								<a ng-click="navCtrl.goToRegistrations()">Dokumentation</a>
+							</li>
+							<li ng-hide="!navCtrl.isCustodian()">
+								<a ng-click="navCtrl.goToStatistics()">Statistik</a>
+							</li>
+							<li>
+								<div ng-hide="!navCtrl.hideLogin()" ng-controller="logoutController as logoutCtrl">
+									<a ng-click="logoutCtrl.logout()">Logout</a>
+								</div>
+								<div ng-hide="navCtrl.hideLogin()">
+									<a data-toggle="collapse" data-target="#navLoginPanel">Login</a>
 									<div id="navLoginPanel" class="collapse">
 										<login></login>
 									</div>
-								</li>
-							</div>
+								</div>
+							</li>
 						</ul>
-					</div>
+<!--					</div>-->
 				</div>
 			</div>
 		</nav>
@@ -56,11 +56,7 @@
 	<ng-view></ng-view>
 
 	<!--
-<<<<<<< HEAD:alletiders/index.html
     Cannot use device camera with http; needs https.
-=======
-	Kan ikke bruge devices' kamera over http protokollen
->>>>>>> 67a5d7aa57e1b065c6a69ae614cea8c2e0a2c4dd:alletiders/index.php
 	<div class="container" ng-controller="qrController">
 		<qr-scanner ng-success="onSuccess(data)" width="400" height="300"></qr-scanner>
 	</div>-->
@@ -69,8 +65,7 @@
 	<script src="app/libraries/bootstrap/js/bootstrap.js"></script>
 	<script src="app/libraries/angular/angular.js"></script>
 	<script src="app/libraries/angular-route/angular-route.js"></script>
-	<script src="app/libraries/datatables.net/js/jquery.dataTables.js"></script>
-	
+
 	<!--
 	<script src="app/libraries/angular-qr-scanner/qr-scanner.js"></script>
 	<script src="app/libraries/angular-qr-scanner/src/jsqrcode-combined.min.js"></script>

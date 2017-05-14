@@ -11,5 +11,11 @@
 			this.goToStatistics = function(){
 				$location.path('/statistics');
 			}
+			this.isCustodian = function(){
+				return userData.isSet() && userData.isCustodian();
+			}
+			this.goToRegistrations = function(){
+				$location.path('/registration');
+			}
     });
 })();

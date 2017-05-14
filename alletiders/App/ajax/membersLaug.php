@@ -22,7 +22,7 @@
       $resultArr = array();
       while($rs = $result->fetch_array(MYSQLI_ASSOC)) {
           $name = utf8_encode($rs['firstname'] . " " . $rs['middlename'] . " " . $rs['lastname']);
-          $resultArr[]= array("name"=> $name, "id"=> $rs['id']);
+          $resultArr[]= array("name"=> $name, "memberID"=> $rs['id']);
       }
       
       //$resultArr[] = array("GETid"=>$userId, "GETpw"=>$userPW, "params"=>$parameter);

@@ -1,73 +1,93 @@
-
 /* ---------- GENERAL BACKGROUND & TEXT  ---------- */
+
 body {
-  background-color: #F2F2F2;
-  border: 2px;
-  border-color: #C88817;
-  font-family: 'Lato', sans-serif;
+	background-color: #F2F2F2;
+	border: 2px;
+	border-color: #C88817;
+	font-family: 'Lato', sans-serif;
 }
 
 h1,
 h2 {
-  font-family: 'Acme', sans-serif;
+	font-family: 'Acme', sans-serif;
 }
 
-.subtitle{
-  color: #C28833;
+.subtitle {
+	color: #C28833;
 }
 
 /* --------------- NAVBAR  --------------- */
+
 .navbar-default {
-  background-color: #4A4641;
-  font-size: 13px;
-  text-transform: uppercase;
+	background-color: #4A4641;
+	font-size: 13px;
+	text-transform: uppercase;
 }
 
 .navbar-default .navbar-toggle {
-  background-color: #4A4641;
+	background-color: #4A4641;
 }
 
 .navbar-default .navbar-brand,
 .navbar-default .navbar-nav>div>li>a {
-  color: #F2F2F2;
+	color: #F2F2F2;
 }
 
 .navbar-default .navbar-brand:hover,
-.navbar-default .navbar-nav>div>li>a:hover{
-  color: #C28833;
+.navbar-default .navbar-nav>div>li>a:hover {
+	color: #C28833;
 }
 
 .navbar-default .navbar-toggle .icon-bar {
-  background-color: #C28833;
+	background-color: #C28833;
 }
 
-#myNavbar > div > ul > div.ng-scope > li > a{
-	text-align: right;
+#myNavbar ul{
+	overflow: hidden;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
 }
+
+#myNavbar ul li a{
+	color: #F2F2F2;
+	text-align: center;
+	text-decoration: none;
+	float: right;
+	padding: 16px;
+}
+
+#myNavbar ul li a:hover{
+	color: #C28833;
+}
+
 /* --------------- BUTTONS  --------------- */
+
 .btn {
-  margin-bottom: 4px;
-  background-color: #D7AE70;
-  border-color: #C88817;
-  font-size: 13px;
-  text-transform: uppercase;
+	margin-bottom: 4px;
+	background-color: #D7AE70;
+	border-color: #C88817;
+	font-size: 13px;
+	text-transform: uppercase;
 }
 
 .btn:hover {
-  background-color: #C5892F;
-  border-color: #C88817;
+	background-color: #C5892F;
+	border-color: #C88817;
 }
+
 
 /* --------------- FORM FIELDS & LABELS  --------------- */
-.ng-invalid.ng-dirty{
-    border-color: #FA787E;
+
+.ng-invalid.ng-dirty {
+	border-color: #FA787E;
 }
 
-.ng-valid.ng-dirty{
-    border-color: #78FA89;
+.ng-valid.ng-dirty {
+	border-color: #78FA89;
 }
 
 .label {
-  color: #333;
-  font-size: 15px;
+	color: #333;
+	font-size: 15px;
 }

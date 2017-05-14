@@ -17,7 +17,8 @@
           loginService.login($scope.email, $scope.password, function (response) {
             if (response.success) {
               userData.set(response.user);
-              $location.path('/registration');
+							console.log(userData.get());
+							$location.path('/registration');
             } else {
               $scope.msgLoginErr = false;
             }

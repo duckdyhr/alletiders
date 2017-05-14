@@ -15,6 +15,7 @@
 						'Content-Type': 'application/x-www-form-urlencoded'
 					}
 				}).then(function (response) {
+					console.log(response);
 					if (response.data.success) {
 						callback({
 							success: true
@@ -39,7 +40,6 @@
 			service.getLaugByMember = function (memberId, callback) {
 				$http.get("app/ajax/laugByMember.php?id=" + memberId)
 					.then(function (response) {
-						//console.log(response);
 						callback(response.data);
 					});
 			}

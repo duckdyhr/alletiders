@@ -21,6 +21,7 @@
           .then(function (response) {
             if (response.data.success) {
               var temp = response.data.user[0];
+							//console.log(temp);
               callback({
                 success: true,
                 user: {

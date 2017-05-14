@@ -20,3 +20,7 @@ app.controller("testLoginController", function($scope, $http){
 SELECT Laug.name, Laug.id FROM Laug
 	LEFT JOIN Member_Laug ON Laug.id=Member_Laug.laugId
     WHERE Member_Laug.memberId=1
+		
+
+<!--				Basic login-->
+<!--				<input id="textFrivillig" name="selectedFrivillig" type="text" class="form-control" value="{{author.name}}" disabled required>-->
